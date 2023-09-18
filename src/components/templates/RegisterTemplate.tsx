@@ -17,8 +17,6 @@ export const RegisterTemplate = () => {
         mode: 'onChange',
         resolver: zodResolver(RegisterSchema),
     })
-    // const { errors } = formState
-    // console.log('errors: ', errors)
 
     const navigate = useNavigate()
 
@@ -27,12 +25,7 @@ export const RegisterTemplate = () => {
             await quanLyNguoiDungServices.register(values)
             toast.success('Đăng ký thành công!', {
                 position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
+                autoClose: 1000,
             });
             navigate(PATH.login)
         } catch (err) {
@@ -42,7 +35,7 @@ export const RegisterTemplate = () => {
 
     return (
         <form className="text-white" onSubmit={handleSubmit(onSubmit)}>
-            <h2 className="font-600 text-30 text-center">Đăng ký</h2>
+            <h2 className="font-600 text-30">Đăng ký</h2>
             <Input
                 className="mt-16"
                 placeholder="Tài khoản"

@@ -28,12 +28,13 @@ export const LoginTemplate = () => {
         dispatch(loginThunk(value))
             .unwrap()
             .then(() => {
-                // xử lý action thành công
-                toast.success('Đăng nhập thành công!')
+                toast.success('Đăng nhập thành công!', {
+                    position: "top-center",
+                    autoClose: 1000,
+                })
                 navigate('/')
             })
             .catch((err) => {
-                // xử lý action thất bại
                 handleError(err)
             })
     }
@@ -43,7 +44,6 @@ export const LoginTemplate = () => {
             <h2 className="font-600 text-30 text-white">Đăng nhập</h2>
             <Input
                 className="mt-16"
-                label="Tài khoản"
                 placeholder="Tài khoản"
                 id="taiKhoan"
                 name="taiKhoan"
@@ -53,23 +53,23 @@ export const LoginTemplate = () => {
             <Input
                 type="password"
                 className="mt-16"
-                label="Mật khẩu"
                 placeholder="Mật khẩu"
                 id="matKhau"
                 name="matKhau"
                 error={errors?.matKhau?.message}
                 register={register}
             />
-
-            <Button
-                className="!w-full !h-[48px] !mt-20"
-                htmlType="submit"
-                type="primary"
-                danger
-                loading={isFetchingLogin}
-            >
-                Đăng nhập
-            </Button>
+            <div className="flex justify-center items-center">
+                <Button
+                    className="!w-2/3 !p-[6px] !bg-red-500 !text-white !text-[20px] !mt-20 !rounded-10 hover:brightness-125 !h-auto"
+                    htmlType="submit"
+                    type="primary"
+                    danger
+                    loading={isFetchingLogin}
+                >
+                    Đăng nhập
+                </Button>
+            </div>
         </form>
     )
 }

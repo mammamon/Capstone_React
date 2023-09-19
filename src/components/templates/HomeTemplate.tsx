@@ -22,8 +22,8 @@ export const HomeTemplate = () => {
 
     if (isFetchingMovieList) {
         return (
-            <div className="grid grid-cols-4">
-                {[...Array(12)].map(() => {
+            <div className="grid grid-cols-5">
+                {[...Array(15)].map(() => {
                     return (
                         <Card className="!w-[300px] !mt-20">
                             <Skeleton.Image className="!w-full !h-[250px]" />
@@ -39,7 +39,7 @@ export const HomeTemplate = () => {
     return (
         <div>
             <SwiperCarousel data={banners}/>
-            <div className="grid grid-cols-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                 {movieList?.map((movie) => (
                     <Card
                         key={movie.maPhim}

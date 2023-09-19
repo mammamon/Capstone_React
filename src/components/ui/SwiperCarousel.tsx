@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Pagination } from 'swiper/modules';
+import { Autoplay, Pagination } from 'swiper/modules';
 import { Banner } from '../../types/QuanLyBanner';
 import { useState, useEffect } from 'react';
 import { quanLyBannerServices } from '../../services/quanLyBanner';
@@ -28,19 +28,24 @@ const SwiperCarousel: React.FC<SwiperCarouselProps> = ({ data }) => {
 
   return (
     <Swiper
-      modules={[Pagination]}
-      pagination={{
+    modules={[Pagination, Autoplay]} 
+    pagination={{
         dynamicBullets: true,
         clickable: true,
-      }}
-      className="mySwiper"
-    >
-      {data.map((banner) => (
+    }}
+    autoplay={{
+        delay: 5000, 
+        disableOnInteraction: false, 
+    }}
+    loop={true} 
+    className="mySwiper"
+>
+    {data.map((banner) => (
         <SwiperSlide key={banner.maBanner}>
-          <img src={banner.hinhAnh} alt="Banner" />
+            <img src={banner.hinhAnh} alt="Banner" />
         </SwiperSlide>
-      ))}
-    </Swiper>
+    ))}
+</Swiper>
   );
 };
 

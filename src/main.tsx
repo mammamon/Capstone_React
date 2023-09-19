@@ -17,7 +17,7 @@ import { ConfigProvider } from 'antd'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
-        <ToastContainer position="top-right" />
+        <ToastContainer position="top-center" />
         <ConfigProvider
             theme={{
                 token: {

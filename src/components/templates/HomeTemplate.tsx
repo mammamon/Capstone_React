@@ -13,12 +13,10 @@ export const HomeTemplate = () => {
 
     useEffect(() => {
         dispatch(getMovieListThunk());
-
         const fetchBanners = async () => {
             const response = await quanLyBannerServices.getBanners();
             setBanners(response.data.content);
         };
-
         fetchBanners();
     }, [dispatch]);
 

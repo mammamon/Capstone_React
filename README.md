@@ -31,3 +31,4 @@
 
 16. react-toastify
 
+17. swiper

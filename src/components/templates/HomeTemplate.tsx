@@ -1,19 +1,26 @@
 import { Card, Skeleton } from 'components'
-import { useEffect } from 'react'
+import SwiperCarousel from '../../components/ui/SwiperCarousel'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { RootState, useAppDispatch } from 'store'
 import { getMovieListThunk } from 'store/quanLyPhim'
+import { quanLyBannerServices } from '../../services/quanLyBanner';
 
 export const HomeTemplate = () => {
     const dispatch = useAppDispatch()
     const { movieList, isFetchingMovieList } = useSelector((state: RootState) => state.quanLyPhim)
-
-    console.log('isFetchingMovieList: ', isFetchingMovieList)
-    console.log('movieList: ', movieList)
+    const [banners, setBanners] = useState([]);
 
     useEffect(() => {
-        dispatch(getMovieListThunk())
-    }, [dispatch])
+        dispatch(getMovieListThunk());
+
+        const fetchBanners = async () => {
+            const response = await quanLyBannerServices.getBanners();
+            setBanners(response.data.content);
+        };
+
+        fetchBanners();
+    }, [dispatch]);
 
     if (isFetchingMovieList) {
         return (
@@ -33,6 +40,7 @@ export const HomeTemplate = () => {
 
     return (
         <div>
+            <SwiperCarousel data={banners}/>
             <div className="grid grid-cols-4">
                 {movieList?.map((movie) => (
                     <Card

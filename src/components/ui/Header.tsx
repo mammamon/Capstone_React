@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Avatar, Button, Input, Popover } from 'components';
 import { PATH } from 'constant';
 import { useAuth } from 'hooks';
@@ -7,25 +7,6 @@ import { useAppDispatch } from 'store';
 import { quanLyNguoiDungActions } from 'store/quanLyNguoiDung';
 import { useEffect, useState } from 'react';
 import cn from 'classnames';
-
-// button style
-const buttonStyle = css`
-  height: 40px;
-  width: 40px;
-  border: none;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #111;
-  cursor: pointer;
-  outline: none;
-  color: #fff;
-
-  &:hover {
-    color: var(--primary-color) !important;
-  }
-`;
 
 const Container = styled.header`
   height: 60px;
@@ -61,12 +42,12 @@ const Container = styled.header`
 
     @media (max-width: 768px) {
       padding: 0 20px;
-      max-width: 100%;
       flex-direction: column;
       align-items: flex-start;
-      max-width: 200px !important;
+      max-width: 180px !important;
       margin: 0;
-      background-color: #fff000;
+      background-color: #efefef;
+      z-index: 999999;
     }
 
     .brand {
@@ -130,17 +111,34 @@ const Container = styled.header`
       max-width: 200px;
 
       button {
-        ${buttonStyle}
+        height: 40px;
+        width: 40px;
+        border: none;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #111;
+        cursor: pointer;
+        outline: none;
+        color: #fff;
+
+        &:hover {
+          color: var(--primary-color) !important;
+        }
+
         i {
           font-size: 20px;
           line-height: 40px;
         }
+
         @media (max-width: 768px) {
-          scale: .8;
+          scale: .7;
         }
       }
 
       input {
+        z-index: 99999;
         margin-top: 0;
         padding: 8px;
         background: rgba(242, 242, 242, 0.75);
@@ -148,6 +146,7 @@ const Container = styled.header`
         outline: none;
         color: #000;
         position: absolute;
+        top: 103%;
         left: 0;
         right: 0;
         margin: 0 auto;
@@ -156,6 +155,15 @@ const Container = styled.header`
           width: 99%;
           left: 0;
           margin: 2px 0 0 2px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        &:before {
+          content: 'TÌM PHIM';
+          margin-right: 4px;
+          font-size: 17px;
+          cursor: pointer;
         }
       }
     }
@@ -178,10 +186,11 @@ const ToggleButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #e50914;
+  background: #fff;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   i {
     font-size: 20px;
+    color: #e50914;
   }
 
   @media (max-width: 768px) {
@@ -191,7 +200,7 @@ const ToggleButton = styled.button`
   @media (min-width: 769px) {
     display: none;
   }
-`;
+};`
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -261,8 +270,7 @@ export const Header = () => {
             <NavLink to="">TIN TỨC</NavLink>
           </nav>
           <div className="search">
-            {isInputVisible && <Input placeholder="Tìm kiếm tên phim" />}
-            <Button onClick={toggleInputVisibility} title="tìm kiếm tên phim">
+            <Button onClick={toggleInputVisibility}>
               <i className="fa-solid fa-magnifying-glass"></i>
             </Button>
           </div>
@@ -329,6 +337,7 @@ export const Header = () => {
             )}
           </div>
         </div>
+      {isInputVisible && <Input placeholder="Tìm kiếm tên phim" />}
       </Container>
     </>
   );

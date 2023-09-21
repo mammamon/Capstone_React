@@ -17,5 +17,5 @@ export const MainLayout = () => {
 const MainWrapper = styled.div`
     max-width: var(--max-width);
     margin: auto;
-    padding: 40px;
+    padding: 60px;
 `

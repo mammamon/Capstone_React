@@ -152,7 +152,6 @@ const Container = styled.header`
 const ToggleButton = styled.button`
   position: fixed;
   top: 10px;
-  left: 30%;
   background: #fff;
   padding: 10px;
   border: none;

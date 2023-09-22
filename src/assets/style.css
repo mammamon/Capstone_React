@@ -68,3 +68,13 @@
         width:90%;
     }
   }
+
+  /* cinema-list */
+  .cinema-list {
+    flex-direction: column;
+  }
+  .cinema-list .ant-card {
+    width: 100px;
+    height: 100px;
+    
+  }

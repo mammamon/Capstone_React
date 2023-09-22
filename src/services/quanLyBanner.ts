@@ -1,5 +1,5 @@
-import { apiInstance } from '../constant/apiInstance';
-import { Banner } from '../types/QuanLyBanner'
+import { apiInstance } from 'constant/apiInstance';
+import { Banner } from 'types'
 
 const api = apiInstance({
     baseURL: import.meta.env.VITE_QUAN_LY_PHIM_API,

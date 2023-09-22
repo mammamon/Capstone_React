@@ -14,7 +14,8 @@ const Container = styled.header`
   transition: transform 0.3s ease;
   background: #fff;
   @media (max-width: 768px) {
-    height: 300px;
+    height: 280px;
+    position: fixed;
     z-index: 1999;
     box-shadow: none;
     background: transparent;
@@ -47,7 +48,6 @@ const Container = styled.header`
       max-width: 180px !important;
       margin: 0;
       background-color: #efefef;
-      z-index: 999999;
     }
 
     .brand {
@@ -80,7 +80,7 @@ const Container = styled.header`
       }
       @media (max-width: 768px) {
         flex-direction: column;
-        gap: 20px;
+        gap: 16px;
       }
 
       a {
@@ -134,27 +134,6 @@ const Container = styled.header`
 
         @media (max-width: 768px) {
           scale: .7;
-        }
-      }
-
-      input {
-        z-index: 99999;
-        margin-top: 0;
-        padding: 8px;
-        background: rgba(242, 242, 242, 0.75);
-        border: 2px solid #e50914;
-        outline: none;
-        color: #000;
-        position: absolute;
-        top: 103%;
-        left: 0;
-        right: 0;
-        margin: 0 auto;
-        width: 695px;
-        @media (max-width:768px) {
-          width: 99%;
-          left: 0;
-          margin: 2px 0 0 2px;
         }
       }
 
@@ -228,7 +207,7 @@ export const Header = () => {
     } else {
       setIsSmallScreen(false);
       setIsHeaderVisible(true);
-      setInputVisible(true);
+      setInputVisible(false);
     }
   };
 
@@ -322,8 +301,8 @@ export const Header = () => {
                 arrow={false}
               >
                 {isSmallScreen ? (
-                  <span className="!bg-[var(--primary-color)] cursor-pointer">
-                    Tài khoản
+                  <span className="!bg-transparent cursor-pointer text-[17px]">
+                    TÀI KHOẢN
                   </span>
                 ) : (
                   <Avatar
@@ -337,7 +316,7 @@ export const Header = () => {
             )}
           </div>
         </div>
-      {isInputVisible && <Input placeholder="Tìm kiếm tên phim" />}
+      {isInputVisible && <Input placeholder="Tìm kiếm tên phim" className='search-input' />}
       </Container>
     </>
   );

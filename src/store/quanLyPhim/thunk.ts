@@ -10,7 +10,7 @@ export const getMovieListThunk = createAsyncThunk(
             const randomIndex = Math.floor(Math.random() * maNhomOptions.length);
             const maNhom = maNhomOptions[randomIndex];
             const data = await quanLyPhimServices.getMovieList(`?maNhom=${maNhom}`)
-            await sleep(2000)
+            await sleep(500)
             return data.data.content
         } catch (err) {
             return rejectWithValue(err)

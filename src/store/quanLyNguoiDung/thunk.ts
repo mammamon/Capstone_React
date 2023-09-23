@@ -12,7 +12,7 @@ export const loginThunk = createAsyncThunk(
 
             // sleep 3s
             // await new Promise(resolve => setTimeout(resolve, 3000))
-            await sleep(2000)
+            await sleep(500)
 
             return data.data.content
         } catch (err) {

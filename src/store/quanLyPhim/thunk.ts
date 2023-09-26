@@ -4,12 +4,12 @@ import { sleep } from 'utils'
 
 export const getMovieListThunk = createAsyncThunk(
     'quanLyPhim/getMovieList',
-    async (_, { rejectWithValue }) => {
+    async (maCumRap: string | null = null, { rejectWithValue }) => {
         try {
             const maNhomOptions = ['GP01', 'GP03', 'GP04', 'GP08', 'GP09', 'GP11'];
             const randomIndex = Math.floor(Math.random() * maNhomOptions.length);
             const maNhom = maNhomOptions[randomIndex];
-            const data = await quanLyPhimServices.getMovieList(`?maNhom=${maNhom}`)
+            const data = await quanLyPhimServices.getMovieList(`?maNhom=${maNhom}${maCumRap ? `&maCumRap=${maCumRap}` : ''}`)
             await sleep(500)
             return data.data.content
         } catch (err) {
@@ -17,3 +17,5 @@ export const getMovieListThunk = createAsyncThunk(
         }
     }
 )
+
+

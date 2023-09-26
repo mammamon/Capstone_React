@@ -6,7 +6,7 @@ import { RootState, useAppDispatch } from 'store'
 import { getMovieListThunk } from 'store/quanLyPhim'
 import { quanLyBannerServices } from '../../services/quanLyBanner';
 import { getCinemaListThunk, getCinemaScheduleThunk } from 'store/quanLyRap';
-import { LichChieu } from 'types';
+import { formatTime } from '../../utils/formatTime'
 
 
 export const HomeTemplate = () => {
@@ -17,7 +17,7 @@ export const HomeTemplate = () => {
     const { cinemaSchedule } = useSelector((state: RootState) => state.quanLyRap);
 
     useEffect(() => {
-        dispatch(getMovieListThunk());
+        dispatch(getMovieListThunk(null));
         dispatch(getCinemaListThunk());
         const fetchBanners = async () => {
             const response = await quanLyBannerServices.getBanners();
@@ -77,26 +77,37 @@ export const HomeTemplate = () => {
                 <div className="cinema-schedule mt-8 w-10/12">
                     {cinemaSchedule?.map((schedule) => (
                         <div key={schedule.maHeThongRap}>
-                            {schedule.lstCumRap[0].danhSachPhim.map((phim) => (
-                                <div key={phim.maPhim}>
-                                    <h3>{phim.tenPhim}</h3>
-                                    <img src={phim.hinhAnh} alt={phim.tenPhim} className="w-[100px]" />
-                                    {phim.lstLichChieuTheoPhim.map((lichChieu: LichChieu) => (
-                                        <div key={lichChieu.maLichChieu}>
-                                            <p>Mã phim: {lichChieu.maPhim}</p>
-                                            <p>Mã lịch chiếu: {lichChieu.maLichChieu}</p>
-                                            <p>Mã rạp: {lichChieu.maRap}</p>
-                                            <p>Tên rạp: {lichChieu.tenRap}</p>
-                                            <p>Giờ chiếu: {lichChieu.ngayChieuGioChieu}</p>
-                                            <p>Giá vé: {lichChieu.giaVe}</p>
-                                        </div>
-                                    ))}
+                            {schedule.lstCumRap.map((cumRap) => (
+                                <div key={cumRap.maCumRap} className='flex'>
+                                    <div className='w-1/2' onClick={() => dispatch(getMovieListThunk(cumRap.maCumRap))}>
+                                        <h3>{cumRap.tenCumRap}</h3>
+                                        <img src={cumRap.hinhAnh} className="w-[100px]" />
+                                    </div>
+                                    <div className='w-1/2'>
+                                        {cumRap.danhSachPhim.map((phim) => (
+                                            <div key={phim.maPhim} className='flex'>
+                                                <div>
+                                                    <h3>{phim.tenPhim}</h3>
+                                                    <img src={phim.hinhAnh} alt={phim.tenPhim} className="w-[100px]" />
+                                                </div>
+                                                <div className="showtimes">
+                                                    {phim.lstLichChieuTheoPhim && [...phim.lstLichChieuTheoPhim].sort((a, b) => new Date(a.ngayChieuGioChieu).getTime() - new Date(b.ngayChieuGioChieu).getTime()).map((lichChieu) => (
+                                                        <p>{formatTime(lichChieu.ngayChieuGioChieu)}</p>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
                             ))}
                         </div>
                     ))}
                 </div>
             </div>
+
+
+
         </div>
     )
 }
+

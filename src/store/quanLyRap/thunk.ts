@@ -20,7 +20,7 @@ export const getCinemaScheduleThunk = createAsyncThunk(
   async (maHeThongRap: string, { rejectWithValue }) => {
     try {
       const data = await quanLyHeThongRapServices.getCinemaSchedule(maHeThongRap);
-      await sleep(500);
+      await sleep(100);
       return data.data.content;
     } catch (err) {
       return rejectWithValue(err.message);

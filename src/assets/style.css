@@ -69,12 +69,49 @@
     }
   }
 
-  /* cinema-list */
-  .cinema-list {
-    flex-direction: column;
-  }
+  /* cinema zone */
   .cinema-list .ant-card {
     width: 100px;
     height: 100px;
-    
   }
+  .cinema-schedule-wrapper {
+    height: 500px;
+    overflow-y: scroll;
+  }
+  .cinema-movie {
+    height: 200px;
+    border: 2px solid #111;
+  }
+  .cinema-movie img {
+    height: 100px;
+  }
+  .cinema-schedule {
+    height: 500px;
+    overflow-y: auto;
+  }
+
+
+.cinema-location, .cinema-schedule {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(155, 155, 155, 0.7) transparent;
+}
+
+
+.cinema-location::-webkit-scrollbar, .cinema-schedule::-webkit-scrollbar {
+  width: 8px;
+}
+
+.cinema-location::-webkit-scrollbar-track, .cinema-schedule::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.cinema-location::-webkit-scrollbar-thumb, .cinema-schedule::-webkit-scrollbar-thumb {
+  background-color: rgba(155, 155, 155, 0.7);
+  border-radius: 20px;
+  border: transparent;
+}
+
+.selected {
+  border: 2px solid #ff6347 !important; 
+}
+

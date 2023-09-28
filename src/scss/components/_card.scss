@@ -1,0 +1,24 @@
+.ant-card {
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    height: 300px;
+  
+    &.hover {
+      transform: scale(1.05);
+    }
+  
+    .ant-card-cover img {
+      height: 200px;
+      width: 180px;
+    }
+  
+    .ant-card-body {
+      padding: 8px !important;
+    }
+  
+    .ant-popover-content {
+      z-index: 999999;
+    }
+  }
+  

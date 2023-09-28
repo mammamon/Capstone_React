@@ -1,0 +1,11 @@
+.search-input {
+    padding: 8px;
+    width: 695px;
+    margin: 0 auto;
+    color: #000;
+    outline: none;
+
+    @media screen and (max-width :768px) {
+        width: 90%;
+    }
+}

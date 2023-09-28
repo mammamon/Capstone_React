@@ -27,7 +27,7 @@
 
 14. @types/node (phục vụ import)
 
-15. sass
+15. scss (cài extension live scss compiler ra css ở src/assets/style.css)
 
 16. react-toastify
 

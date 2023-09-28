@@ -88,8 +88,7 @@ export const HomeTemplate = () => {
             <div className="cinema-zone flex">
                 <div className="cinema-list flex-2 grid-cols-2 gap-4 mt-8 w-2/12">
                     {cinemaList?.map((cinema) => (
-                       <Card key={cinema.maHeThongRap} hoverable className={selectedCinemaList === cinema.maHeThongRap ? 'selected' : ''}>
-
+                        <Card key={cinema.maHeThongRap} hoverable className={selectedCinemaList === cinema.maHeThongRap ? 'selected' : ''}>
                             <img
                                 src={cinema.logo}
                                 alt={cinema.tenHeThongRap}
@@ -108,7 +107,7 @@ export const HomeTemplate = () => {
                         </Card>
                     ))}
                 </div>
-                <div className="cinema-location mt-8 w-4/12" style={{ height: '500px', overflow: 'auto' }}>
+                <div className="cinema-location mt-8 w-4/12">
                     {cinemaSchedule?.map((schedule) => (
                         <div key={schedule.maHeThongRap}>
                             {schedule.lstCumRap.map((cumRap) => (
@@ -122,20 +121,26 @@ export const HomeTemplate = () => {
                         </div>
                     ))}
                 </div>
-                <div className="cinema-schedule mt-8 w-6/12" style={{ height: '500px', overflow: 'auto' }}>
+                <div className="cinema-schedule mt-8 w-6/12">
                     {selectedCinemaList && selectedCumRap && cinemaSchedule?.map((schedule) => (
                         <div key={schedule.maHeThongRap}>
                             {schedule.lstCumRap.map((cumRap) => (
                                 selectedCumRap === cumRap.maCumRap && cumRap.danhSachPhim.map((phim) => (
-                                    <div key={phim.maPhim} className='flex p-[12px]'>
-                                        <div>
+                                    <div key={phim.maPhim} className='cinema-schedule-movie flex p-[12px]'>
+                                        <div className='h-full'>
                                             <h3>{phim.tenPhim}</h3>
                                             <img src={phim.hinhAnh} alt={phim.tenPhim} className="w-[100px]" />
                                         </div>
                                         <div className="showtimes">
-                                            {phim.lstLichChieuTheoPhim && [...phim.lstLichChieuTheoPhim].sort((a, b) => new Date(a.ngayChieuGioChieu).getTime() - new Date(b.ngayChieuGioChieu).getTime()).map((lichChieu) => (
-                                                <p>{formatTime(lichChieu.ngayChieuGioChieu)}</p>
-                                            ))}
+                                            {phim.lstLichChieuTheoPhim &&
+                                                [...phim.lstLichChieuTheoPhim]
+                                                    .sort((a, b) => new Date(a.ngayChieuGioChieu).getTime() - new Date(b.ngayChieuGioChieu).getTime())
+                                                    .map((lichChieu) => (
+                                                        <p key={lichChieu.maLichChieu}>
+                                                            {formatTime(lichChieu.ngayChieuGioChieu)}
+                                                        </p>
+                                                    ))
+                                            }
                                         </div>
                                     </div>
                                 ))

@@ -1,0 +1,77 @@
+.cinema-zone {
+
+    .cinema-list .ant-card {
+        width: 100px;
+        height: 100px;
+    }
+
+    .cinema-schedule-wrapper,
+    .cinema-location,
+    .cinema-schedule {
+        height: 500px;
+        overflow-y: scroll;
+
+        scrollbar-width: thin;
+        scrollbar-color: rgba(155,155,155,0.7) transparent;
+
+        &::-webkit-scrollbar{
+            width :8px ;
+        }
+
+        &::-webkit-scrollbar-track{
+            background :transparent ;
+        }
+
+        &::-webkit-scrollbar-thumb{
+            background-color :rgba(155,155,155,0.7) ;
+            border-radius :20px ;
+            border :transparent ;
+        }
+    }
+
+    .cinema-movie {
+        height :200px ;
+        border-bottom-width :2px ;
+        border-bottom-style :solid ;
+        border-bottom-color :#111 ;
+
+        img{
+            height :100px ;
+        }
+    }
+
+    .cinema-schedule-movie{
+        display :flex ;
+        flex-wrap :wrap ;
+        justify-content :space-between ;
+        align-items :center ;
+        padding :12px ;
+        border-bottom-width :1px ;
+        border-bottom-style :solid ;
+        border-bottom-color :#ccc ;
+
+       box-sizing:border-box;
+
+       .showtimes{
+           display:flex;
+           flex-wrap:wrap;
+           gap:6px;
+           width:100%;
+
+           p{
+               background-color:#f0f0f0;
+               padding:5px;
+               border-radius:5px;
+               margin:2px;
+               text-align:center;
+               flex-grow:1;
+               max-width:100px;
+               min-width:52px;
+           }
+       }
+   }
+}
+
+.selected {
+   border :2px solid #ff6347 !important ;
+}

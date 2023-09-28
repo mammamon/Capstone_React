@@ -5,14 +5,26 @@
   --secondary-color: #111;
 }
 
+.cinema-zone .cinema-list {
+  height: 516px;
+}
+.cinema-zone .cinema-location {
+  border: 2px solid transparent;
+}
+.cinema-zone .cinema-location h3 {
+  font-weight: 600;
+  color: #111;
+  line-height: 2;
+}
 .cinema-zone .cinema-list .ant-card {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 6px;
 }
 .cinema-zone .cinema-schedule-wrapper,
 .cinema-zone .cinema-location,
 .cinema-zone .cinema-schedule {
-  height: 500px;
+  height: 512px;
   overflow-y: scroll;
   scrollbar-width: thin;
   scrollbar-color: rgba(155, 155, 155, 0.7) transparent;
@@ -49,16 +61,31 @@
   justify-content: space-between;
   align-items: center;
   padding: 12px;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  border-bottom-color: #ccc;
+  border-bottom: 1px solid #ccc;
   box-sizing: border-box;
+}
+.cinema-zone .cinema-schedule-movie img {
+  height: 142px;
+  width: 100%;
+}
+.cinema-zone .cinema-schedule-movie h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  text-transform: capitalize;
+  text-align: center;
+  line-height: 1.3;
+  max-height: 45px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 .cinema-zone .cinema-schedule-movie .showtimes {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  width: 100%;
 }
 .cinema-zone .cinema-schedule-movie .showtimes p {
   background-color: #f0f0f0;
@@ -69,6 +96,11 @@
   flex-grow: 1;
   max-width: 100px;
   min-width: 52px;
+}
+.cinema-zone .cinema-schedule-movie .showtimes p:hover {
+  color: red;
+  background-color: #ccc;
+  cursor: pointer;
 }
 
 .selected {

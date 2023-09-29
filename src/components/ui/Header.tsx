@@ -1,12 +1,172 @@
+import { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Avatar, Button, Input, Popover } from 'components';
 import { PATH } from 'constant';
 import { useAuth } from 'hooks';
 import { useAppDispatch } from 'store';
+import { useDispatch } from 'react-redux'
 import { quanLyNguoiDungActions } from 'store/quanLyNguoiDung';
-import { useEffect, useState } from 'react';
+import { setSearchTerm } from '../../store/searchSlice';
 import cn from 'classnames';
+
+export const Header = () => {
+  const navigate = useNavigate();
+  const { accessToken, user } = useAuth();
+  const dispatch = useAppDispatch();
+  const reduxDispatch = useDispatch();
+  const [scroll, setScroll] = useState<boolean>(false);
+  const [isSmallScreen, setIsSmallScreen] = useState<boolean>(false);
+  const [isHeaderVisible, setIsHeaderVisible] = useState<boolean>(true);
+  const [isInputVisible, setInputVisible] = useState(true);
+  const [inputValue, setInputValue] = useState('');
+
+  const toggleInputVisibility = () => setInputVisible(!isInputVisible);
+
+  const handleScroll = () => {
+    if (window.pageYOffset > 50) {
+      setScroll(true);
+    } else {
+      setScroll(false);
+    }
+  };
+
+  const handleResize = () => {
+    if (window.innerWidth <= 768) {
+      setIsSmallScreen(true);
+      setIsHeaderVisible(false);
+      setInputVisible(false);
+    } else {
+      setIsSmallScreen(false);
+      setIsHeaderVisible(true);
+      setInputVisible(false);
+    }
+  };
+
+  const toggleHeader = () => {
+    setIsHeaderVisible(!isHeaderVisible);
+  };
+
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    setInputValue(value);
+    reduxDispatch(setSearchTerm(value));
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  return (
+    <>
+      {isSmallScreen && (
+        <ToggleButton onClick={toggleHeader}>
+          <i className={`fa ${isHeaderVisible ? 'fa-times' : 'fa-bars'}`}></i>
+        </ToggleButton>
+      )}
+      <Container
+        className={cn({
+          'header-fixed': scroll,
+          'header-hidden': !isHeaderVisible && isSmallScreen,
+        })}
+      >
+        <div className="header-content">
+          <h1 className="brand">
+            <span className="text-[var(--primary-color)]">CYBER</span>MOVIE
+          </h1>
+          <nav>
+            <NavLink to="">LỊCH CHIẾU</NavLink>
+            <NavLink to="">PHIM</NavLink>
+            <NavLink to="">RẠP</NavLink>
+            <NavLink to="">TIN TỨC</NavLink>
+          </nav>
+          <div className="search">
+            <Button onClick={toggleInputVisibility}>
+              <i className="fa-solid fa-magnifying-glass"></i>
+            </Button>
+          </div>
+          <div>
+            {!accessToken && (
+              <p className="flex items-center font-600">
+                <i className="fa-solid fa-user text-20"></i>
+                <span
+                  className="ml-10 cursor-pointer hover:text-[var(--primary-color)]"
+                  onClick={() => navigate(PATH.login)}
+                >
+                  Đăng nhập
+                </span>
+                <span className="inline-block h-[24px] w-[2px] bg-black mx-6"></span>
+                <span
+                  className="cursor-pointer hover:text-[var(--primary-color)]"
+                  onClick={() => navigate(PATH.register)}
+                >
+                  Đăng ký
+                </span>
+              </p>
+            )}
+            {!!accessToken && (
+              <Popover
+                content={
+                  <div className="p-10">
+                    <p className="font-600 text-16">{user?.hoTen}</p>
+                    <hr className="my-16" />
+                    <p
+                      className="text-16 cursor-pointer"
+                      onClick={() => navigate(PATH.account)}
+                    >
+                      Thông tin tài khoản
+                    </p>
+                    <hr className="my-16" />
+                    <Button
+                      className="!h-[46px]"
+                      type="primary"
+                      onClick={() =>
+                        dispatch(quanLyNguoiDungActions.logOut('abc'))
+                      }
+                    >
+                      <i className="fa-solid fa-arrow-right-from-bracket text-16"></i>
+                      <span className="ml-10 font-500 text-16">Đăng xuất</span>
+                    </Button>
+                  </div>
+                }
+                trigger="click"
+                arrow={false}
+              >
+                {isSmallScreen ? (
+                  <span className="!bg-transparent cursor-pointer text-[17px]">
+                    TÀI KHOẢN
+                  </span>
+                ) : (
+                  <Avatar
+                    size="large"
+                    className="!bg-[var(--primary-color)] cursor-pointer"
+                  >
+                    <i className="fa-regular fa-user text-20"></i>
+                  </Avatar>
+                )}
+              </Popover>
+            )}
+          </div>
+        </div>
+        {isInputVisible && (
+          <Input
+            placeholder="Tìm kiếm tên phim"
+            type="text"
+            className="search-input"
+            value={inputValue}
+            onChange={handleInputChange}
+          />
+        )}
+      </Container>
+    </>
+  );
+};
 
 const Container = styled.header`
   height: 60px;
@@ -179,144 +339,3 @@ const ToggleButton = styled.button`
     display: none;
   }
 };`
-
-export const Header = () => {
-  const navigate = useNavigate();
-  const { accessToken, user } = useAuth();
-  const dispatch = useAppDispatch();
-  const [scroll, setScroll] = useState<boolean>(false);
-  const [isSmallScreen, setIsSmallScreen] = useState<boolean>(false);
-  const [isHeaderVisible, setIsHeaderVisible] = useState<boolean>(true);
-  const [isInputVisible, setInputVisible] = useState(true);
-  const toggleInputVisibility = () => setInputVisible(!isInputVisible);
-
-  const handleScroll = () => {
-    if (window.pageYOffset > 50) {
-      setScroll(true);
-    } else {
-      setScroll(false);
-    }
-  };
-
-  const handleResize = () => {
-    if (window.innerWidth <= 768) {
-      setIsSmallScreen(true);
-      setIsHeaderVisible(false);
-      setInputVisible(false);
-    } else {
-      setIsSmallScreen(false);
-      setIsHeaderVisible(true);
-      setInputVisible(false);
-    }
-  };
-
-  const toggleHeader = () => {
-    setIsHeaderVisible(!isHeaderVisible);
-  };
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('resize', handleResize);
-    handleResize();
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  return (
-    <>
-      {isSmallScreen && (
-        <ToggleButton onClick={toggleHeader}>
-          <i className={`fa ${isHeaderVisible ? 'fa-times' : 'fa-bars'}`}></i>
-        </ToggleButton>
-      )}
-      <Container
-        className={cn({
-          'header-fixed': scroll,
-          'header-hidden': !isHeaderVisible && isSmallScreen,
-        })}
-      >
-        <div className="header-content">
-          <h1 className="brand">
-            <span className="text-[var(--primary-color)]">CYBER</span>MOVIE
-          </h1>
-          <nav>
-            <NavLink to="">LỊCH CHIẾU</NavLink>
-            <NavLink to="">PHIM</NavLink>
-            <NavLink to="">RẠP</NavLink>
-            <NavLink to="">TIN TỨC</NavLink>
-          </nav>
-          <div className="search">
-            <Button onClick={toggleInputVisibility}>
-              <i className="fa-solid fa-magnifying-glass"></i>
-            </Button>
-          </div>
-          <div>
-            {!accessToken && (
-              <p className="flex items-center font-600">
-                <i className="fa-solid fa-user text-20"></i>
-                <span
-                  className="ml-10 cursor-pointer hover:text-[var(--primary-color)]"
-                  onClick={() => navigate(PATH.login)}
-                >
-                  Đăng nhập
-                </span>
-                <span className="inline-block h-[24px] w-[2px] bg-black mx-6"></span>
-                <span
-                  className="cursor-pointer hover:text-[var(--primary-color)]"
-                  onClick={() => navigate(PATH.register)}
-                >
-                  Đăng ký
-                </span>
-              </p>
-            )}
-            {!!accessToken && (
-              <Popover
-                content={
-                  <div className="p-10">
-                    <p className="font-600 text-16">{user?.hoTen}</p>
-                    <hr className="my-16" />
-                    <p
-                      className="text-16 cursor-pointer"
-                      onClick={() => navigate(PATH.account)}
-                    >
-                      Thông tin tài khoản
-                    </p>
-                    <hr className="my-16" />
-                    <Button
-                      className="!h-[46px]"
-                      type="primary"
-                      onClick={() =>
-                        dispatch(quanLyNguoiDungActions.logOut('abc'))
-                      }
-                    >
-                      <i className="fa-solid fa-arrow-right-from-bracket text-16"></i>
-                      <span className="ml-10 font-500 text-16">Đăng xuất</span>
-                    </Button>
-                  </div>
-                }
-                trigger="click"
-                arrow={false}
-              >
-                {isSmallScreen ? (
-                  <span className="!bg-transparent cursor-pointer text-[17px]">
-                    TÀI KHOẢN
-                  </span>
-                ) : (
-                  <Avatar
-                    size="large"
-                    className="!bg-[var(--primary-color)] cursor-pointer"
-                  >
-                    <i className="fa-regular fa-user text-20"></i>
-                  </Avatar>
-                )}
-              </Popover>
-            )}
-          </div>
-        </div>
-      {isInputVisible && <Input placeholder="Tìm kiếm tên phim" className='search-input' />}
-      </Container>
-    </>
-  );
-};

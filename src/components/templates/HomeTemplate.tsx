@@ -1,24 +1,26 @@
-import { Card, Skeleton } from 'components'
-import SwiperCarousel from '../../components/ui/SwiperCarousel'
-import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { RootState, useAppDispatch } from 'store'
-import { getMovieListThunk } from 'store/quanLyPhim'
+import { Card, Skeleton } from 'components';
+import 'animate.css';
+import SwiperCarousel from '../../components/ui/SwiperCarousel';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState, useAppDispatch } from 'store';
+import { getMovieListThunk } from 'store/quanLyPhim';
 import { quanLyBannerServices } from '../../services/quanLyBanner';
 import { getCinemaListThunk, getCinemaScheduleThunk } from 'store/quanLyRap';
-import { formatTime } from '../../utils/formatTime'
+import { formatTime } from '../../utils/formatTime';
 
 export const HomeTemplate = () => {
-    const dispatch = useAppDispatch()
-    const { movieList, isFetchingMovieList } = useSelector((state: RootState) => state.quanLyPhim)
+    const dispatch = useAppDispatch();
+    const { movieList, isFetchingMovieList } = useSelector((state: RootState) => state.quanLyPhim);
     const { cinemaList, isFetchingCinemaList } = useSelector((state: RootState) => state.quanLyRap);
     const [banners, setBanners] = useState([]);
     const [selectedCinemaList, setSelectedCinemaList] = useState(null);
     const [selectedCumRap, setSelectedCumRap] = useState(null);
     const { cinemaSchedule } = useSelector((state: RootState) => state.quanLyRap);
-    const [filter, setFilter] = useState(null);
-
-
+    const [selectedFilter, setSelectedFilter] = useState('tatCaPhim');
+    const [animationKey, setAnimationKey] = useState(0);
+    const searchTerm = useSelector((state: RootState) => state.search);
+    console.log("searchTerm: ", searchTerm);
     useEffect(() => {
         dispatch(getMovieListThunk(null));
         dispatch(getCinemaListThunk());
@@ -45,54 +47,75 @@ export const HomeTemplate = () => {
 
     useEffect(() => {
         if (cinemaSchedule?.length > 0) {
-            const selectedCinemaSchedule = cinemaSchedule.find(schedule => schedule.maHeThongRap === selectedCinemaList);
+            const selectedCinemaSchedule = cinemaSchedule.find((schedule) => schedule.maHeThongRap === selectedCinemaList);
             if (selectedCinemaSchedule && selectedCinemaSchedule.lstCumRap.length > 0) {
                 setSelectedCumRap(selectedCinemaSchedule.lstCumRap[0].maCumRap);
             }
         }
     }, [cinemaSchedule, selectedCinemaList]);
 
-    if (isFetchingMovieList || isFetchingCinemaList) {
-        return (
-            <div>
-              <SwiperCarousel data={banners} />
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-[30px] mt-[90px]">
-                {[...Array(15)].map((_, index) => (
-                  <Card key={index} className="!w-[240px] !h-[300px]">
-                    <Skeleton.Image className='!w-full !h-[200px]' active />
-                    <div className="mt-16">
-                      <Skeleton.Input className="!w-full !h-[70px]" active />
-                    </div>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          );
-        }
+    // trigger animation khi click vào một trong 3 nút
+    const handleFilterClick = (filter) => {
+        setSelectedFilter(filter);
+        setAnimationKey((prevKey) => prevKey + 1);
+    };
 
     return (
         <div>
             <SwiperCarousel data={banners} />
             <div className='btn-filter flex gap-[20px] justify-center mt-[40px] mb-[20px]'>
-                <button className={filter === "dangChieu" ? "selected" : ""} onClick={() => setFilter(filter !== "dangChieu" ? "dangChieu" : null)}>Đang Chiếu</button>
-                <button className={filter === "sapChieu" ? "selected" : ""} onClick={() => setFilter(filter !== "sapChieu" ? "sapChieu" : null)}>Sắp Chiếu</button>
-
+                <button
+                    className={selectedFilter === 'tatCaPhim' ? 'selected' : ''}
+                    onClick={() => handleFilterClick('tatCaPhim')}
+                >
+                    Tất cả phim
+                </button>
+                <button
+                    className={selectedFilter === 'dangChieu' ? 'selected' : ''}
+                    onClick={() => handleFilterClick('dangChieu')}
+                >
+                    Phim đang chiếu
+                </button>
+                <button
+                    className={selectedFilter === 'sapChieu' ? 'selected' : ''}
+                    onClick={() => handleFilterClick('sapChieu')}
+                >
+                    Phim sắp chiếu
+                </button>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-                {movieList?.filter(movie => filter ? movie[filter] : true).map((movie) => (
-                    <Card
-                        key={movie.maPhim}
-                        className="!mt-20"
-                        hoverable
-                        style={{ width: 240 }}
-                        cover={<img alt="example" src={movie.hinhAnh} />}
-                    >
-                        <Card.Meta
-                            title={movie.tenPhim}
-                            description={movie.moTa.substring(0, 30)}
-                        />
-                    </Card>
-                ))}
+            <div
+                key={animationKey}
+                className={`movies grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 ${selectedFilter ? 'animate__animated animate__fadeInLeft' : ''
+                    }`}
+            >
+                {isFetchingMovieList || isFetchingCinemaList ? (
+                    [...Array(15)].map((_, index) => (
+                        <Card key={index} className='!w-[240px] !h-[300px]'>
+                            <Skeleton.Image className='!w-full !h-[200px]' active />
+                            <div className='mt-16'>
+                                <Skeleton.Input className='!w-full !h-[70px]' active />
+                            </div>
+                        </Card>
+                    ))
+                ) : (
+                    // lọc phim kèm điều kiện trong khung tìm kiếm
+                    movieList?.filter((movie) => {
+                        if (selectedFilter === 'tatCaPhim') {
+                            return movie.tenPhim.toLowerCase().includes(searchTerm.toLowerCase());
+                        }
+                        return movie[selectedFilter] && movie.tenPhim.toLowerCase().includes(searchTerm.toLowerCase());
+                    }).map((movie) => (
+                        <Card
+                            key={movie.maPhim}
+                            className='!mt-20'
+                            hoverable
+                            style={{ width: 240 }}
+                            cover={<img alt='example' src={movie.hinhAnh} />}
+                        >
+                            <Card.Meta title={movie.tenPhim} description={movie.moTa.substring(0, 30)} />
+                        </Card>
+                    ))
+                )}
             </div>
 
             <div className="cinema-zone pt-[60px] flex">

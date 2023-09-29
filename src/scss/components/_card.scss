@@ -21,4 +21,22 @@
       z-index: 999999;
     }
   }
+.movies .ant-card {
+  &:hover::before {
+    content: 'Đặt vé ngay';
+    text-transform: uppercase;
+    text-align: center;
+    position: absolute;
+    top: 40%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    background-color: rgba(229, 9, 20, 0.75);
+    color: #fff;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    pointer-events: none; 
+}
+}
   

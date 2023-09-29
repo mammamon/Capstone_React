@@ -32,3 +32,5 @@
 16. react-toastify
 
 17. swiper
+
+18. animate.css

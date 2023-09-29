@@ -12,6 +12,8 @@ type InputProps = {
     placeholder?: string
     className?: string
     name?: string
+    value?: string
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const Input = ({

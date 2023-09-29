@@ -1,13 +1,14 @@
 .btn-filter {
     button {
+        text-transform: uppercase;
         font-size: 16px;
         padding: 0 16px 0 16px;
-        background-color: #222;
-        color: #fff;
-        padding: 5px;
+        background-color: #ddd;
+        color: #111;
+        padding: 6px;
         border-radius: 6px;
         text-align: center;
-        width: 150px;
+        width: 160px;
         border: 2px solid transparent;
     }
 }   

@@ -1,8 +1,11 @@
 // _variables.scss
 :root {
-    --header-height: 80px;
-    --max-width: 1536px;
-    --primary-color: #e50914;
-    --secondary-color: #111; 
-  }
-  
+  --header-height: 80px;
+  --max-width: 1536px;
+  --primary-color: #e50914;
+  --secondary-color: #111;
+}
+
+.selected {
+  border: 2px solid #ff6347 !important;
+}

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 export const Footer = () => {
     return (
-        <Container className="mt-[100px] flex flex-col">
+        <Container className="flex flex-col">
             <img
                 className="w-full"
                 src="https://cinestar.com.vn/catalog/view/theme/default/images/line-bg.png"

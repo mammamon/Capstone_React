@@ -1,0 +1,117 @@
+:root {
+    --header-height: 80px;
+    --max-width: 1536px;
+    --primary-color: #e50914;
+    --secondary-color: #111;
+}
+
+/* RegisterTemplate */
+@media (max-width: 450px) {
+    .auth-form {
+      width: 100%;
+    }
+  }
+  
+  /* SwiperCarousel*/
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .swiper-slide {
+    text-align: center;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 450px;
+  }
+  
+  .swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  
+  }
+  
+  /* AntCard */
+  .ant-card {
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    height: 300px;
+  }
+  .ant-card-cover img {
+    height: 200px;
+    width: 180px;
+  }
+  .ant-card-body {
+    padding: 8px !important;
+  }
+  
+  .ant-card:hover {
+    transform: scale(1.05);
+  }
+  .ant-popover-content {
+    z-index: 999999; 
+  }
+  
+  /*search-input*/
+  .search-input {
+    padding: 8px;
+    width: 695px;
+    margin: 0 auto;
+    color: #000;
+    outline: none;
+    @media screen and (max-width:768px) {
+        width:90%;
+    }
+  }
+
+  /* cinema zone */
+  .cinema-list .ant-card {
+    width: 100px;
+    height: 100px;
+  }
+  .cinema-schedule-wrapper {
+    height: 500px;
+    overflow-y: scroll;
+  }
+  .cinema-movie {
+    height: 200px;
+    border: 2px solid #111;
+  }
+  .cinema-movie img {
+    height: 100px;
+  }
+  .cinema-schedule {
+    height: 500px;
+    overflow-y: auto;
+  }
+
+
+.cinema-location, .cinema-schedule {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(155, 155, 155, 0.7) transparent;
+}
+
+
+.cinema-location::-webkit-scrollbar, .cinema-schedule::-webkit-scrollbar {
+  width: 8px;
+}
+
+.cinema-location::-webkit-scrollbar-track, .cinema-schedule::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.cinema-location::-webkit-scrollbar-thumb, .cinema-schedule::-webkit-scrollbar-thumb {
+  background-color: rgba(155, 155, 155, 0.7);
+  border-radius: 20px;
+  border: transparent;
+}
+
+.selected {
+  border: 2px solid #ff6347 !important; 
+}
+

@@ -19,8 +19,8 @@ export const HomeTemplate = () => {
     const { cinemaSchedule } = useSelector((state: RootState) => state.quanLyRap);
     const [selectedFilter, setSelectedFilter] = useState('tatCaPhim');
     const [animationKey, setAnimationKey] = useState(0);
-    const searchTerm = useSelector((state: RootState) => state.search);
-    console.log("searchTerm: ", searchTerm);
+
+
     useEffect(() => {
         dispatch(getMovieListThunk(null));
         dispatch(getCinemaListThunk());
@@ -33,7 +33,7 @@ export const HomeTemplate = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        // tự động chọn cụm rạp đầu tiên khi load page
+        // tự động chọn cụm rạp đầu tiên
         if (cinemaList?.length > 0) {
             setSelectedCinemaList(cinemaList[0].maHeThongRap);
         }
@@ -101,9 +101,9 @@ export const HomeTemplate = () => {
                     // lọc phim kèm điều kiện trong khung tìm kiếm
                     movieList?.filter((movie) => {
                         if (selectedFilter === 'tatCaPhim') {
-                            return movie.tenPhim.toLowerCase().includes(searchTerm.toLowerCase());
+                            return movie.tenPhim.toLowerCase();
                         }
-                        return movie[selectedFilter] && movie.tenPhim.toLowerCase().includes(searchTerm.toLowerCase());
+                        return movie[selectedFilter] && movie.tenPhim.toLowerCase();
                     }).map((movie) => (
                         <Card
                             key={movie.maPhim}
@@ -149,10 +149,11 @@ export const HomeTemplate = () => {
                         {cinemaSchedule?.map((schedule) => (
                             <div key={schedule.maHeThongRap}>
                                 {schedule.lstCumRap.map((cumRap) => (
-                                    <div key={cumRap.maCumRap} className={`cinema-name cursor-pointer p-[6px] pt-0 mr-[6px] rounded-6 ${cumRap.maCumRap === selectedCumRap ? 'selected' : ''}`} onClick={() => {
+                                    <div key={cumRap.maCumRap} className={`cinema-name cursor-pointer p-[6px] pt-0 mr-[6px] mb-[10px] rounded-6 ${cumRap.maCumRap === selectedCumRap ? 'selected' : ''}`} onClick={() => {
                                         setSelectedCumRap(cumRap.maCumRap);
                                     }}>
                                         <h3>{cumRap.tenCumRap}</h3>
+                                        <h4>{cumRap.diaChi}</h4>
                                         <img src={cumRap.hinhAnh} className="w-[100px]" />
                                     </div>
                                 ))}
@@ -178,7 +179,8 @@ export const HomeTemplate = () => {
                                                         .sort((a, b) => new Date(a.ngayChieuGioChieu).getTime() - new Date(b.ngayChieuGioChieu).getTime())
                                                         .map((lichChieu) => (
                                                             <p key={lichChieu.maLichChieu}>
-                                                                {formatTime(lichChieu.ngayChieuGioChieu)}
+                                                                <span className="date">{formatTime(lichChieu.ngayChieuGioChieu).date}</span><br></br>
+                                                                <span className="time">{formatTime(lichChieu.ngayChieuGioChieu).time}</span>
                                                             </p>
                                                         ))
                                                 }

@@ -1,9 +1,11 @@
 .cinema-zone {
     h2 {
-        font-size: 16px;
+        font-size: 15px;
         padding: 0 16px 0 16px;
-        background-color: #222;
+        background-color: #111;
         color: #fff;
+        font-weight: 400;
+        text-transform: uppercase;
         padding: 5px;
         border-radius: 6px;
         text-align: center;
@@ -17,16 +19,25 @@
     }
 
     .cinema-location {
-        border: 2px solid transparent;
-        .cinema-name h3:hover {
-            color: #e50914;
+        .cinema-name {
+            border: 2px solid transparent;
+            h3:hover {
+                color: #e50914;
+            }
         }
+
         h3 {
             font-weight: 600;
             color: #111;
-            line-height: 2;
+            line-height: 1.5;
+        }
+
+        h4 {
+            color: #888;
+            font-size: 12px;
         }
     }
+
     .cinema-list-wrapper {
         h2 {
             width: 80px;
@@ -109,6 +120,17 @@
         flex-wrap: wrap;
         gap: 6px;
 
+        .date {
+            color: #33cc33;
+            font-weight: 400;
+        }
+
+        .time {
+            color: red;
+            font-weight: 500;
+            font-size: 17px;
+        }
+
         p {
             background-color: #f0f0f0;
             padding: 5px;
@@ -117,10 +139,8 @@
             text-align: center;
             flex-grow: 1;
             max-width: 100px;
-            min-width: 52px;
 
             &:hover {
-                color: red;
                 background-color: #ccc;
                 cursor: pointer;
             }

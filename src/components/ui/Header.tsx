@@ -5,21 +5,17 @@ import { Avatar, Button, Input, Popover } from 'components';
 import { PATH } from 'constant';
 import { useAuth } from 'hooks';
 import { useAppDispatch } from 'store';
-import { useDispatch } from 'react-redux'
 import { quanLyNguoiDungActions } from 'store/quanLyNguoiDung';
-import { setSearchTerm } from '../../store/searchSlice';
 import cn from 'classnames';
 
 export const Header = () => {
   const navigate = useNavigate();
   const { accessToken, user } = useAuth();
   const dispatch = useAppDispatch();
-  const reduxDispatch = useDispatch();
   const [scroll, setScroll] = useState<boolean>(false);
   const [isSmallScreen, setIsSmallScreen] = useState<boolean>(false);
   const [isHeaderVisible, setIsHeaderVisible] = useState<boolean>(true);
   const [isInputVisible, setInputVisible] = useState(true);
-  const [inputValue, setInputValue] = useState('');
 
   const toggleInputVisibility = () => setInputVisible(!isInputVisible);
 
@@ -45,12 +41,6 @@ export const Header = () => {
 
   const toggleHeader = () => {
     setIsHeaderVisible(!isHeaderVisible);
-  };
-
-  const handleInputChange = (e) => {
-    const value = e.target.value;
-    setInputValue(value);
-    reduxDispatch(setSearchTerm(value));
   };
 
   useEffect(() => {
@@ -156,11 +146,10 @@ export const Header = () => {
         </div>
         {isInputVisible && (
           <Input
+            name="searchInput"
             placeholder="Tìm kiếm tên phim"
             type="text"
             className="search-input"
-            value={inputValue}
-            onChange={handleInputChange}
           />
         )}
       </Container>

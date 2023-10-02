@@ -350,4 +350,10 @@
   .btn-filter button {
     font-size: 14px;
   }
+}
+
+@media (max-width: 768px) {
+  .ant-tabs-nav {
+    width: 155px;
+  }
 }/*# sourceMappingURL=style.css.map */

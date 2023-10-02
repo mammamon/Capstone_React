@@ -37,7 +37,7 @@ export const Input = ({
       {selectOptions ? ( 
         <select
           id={id}
-          className="p-10 w-full text-white rounded-6 bg-[#333]"
+          className="p-10 w-50 ml-[20px] mt-[20px] text-white rounded-6 bg-[#333]"
           {...register?.(name)}
         >
           {selectOptions.map((option) => (

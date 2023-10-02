@@ -1,5 +1,5 @@
 import { apiInstance } from 'constant/apiInstance'
-import { LoginSchemaType, RegisterSchemaType } from 'schema'
+import { LoginSchemaType, RegisterSchemaType, AccountSchemaType } from 'schema'
 import { UserByAccessToken, UserLogin } from 'types'
 
 const api = apiInstance({
@@ -8,8 +8,7 @@ const api = apiInstance({
 
 export const quanLyNguoiDungServices = {
     register: (data: RegisterSchemaType) => api.post('/DangKy', data),
-
     login: (data: LoginSchemaType) => api.post<ApiResponse<UserLogin>>('/DangNhap', data),
-
+    update: (data: AccountSchemaType) => api.post<ApiResponse<UserLogin>>('/CapNhatThongTinNguoiDung', data), 
     getUserByAccessToken: () => api.post<ApiResponse<UserByAccessToken>>('/ThongTinTaiKhoan'),
 }

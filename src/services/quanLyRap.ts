@@ -8,5 +8,5 @@ const api = apiInstance({
 export const quanLyHeThongRapServices = {
     getCinemaList: (query = '') => api.get<ApiResponse<HeThongRap[]>>(`/LayThongTinHeThongRap${query}`),
     getCinemaSchedule: (maHeThongRap: string) => api.get<ApiResponse<LichChieu[]>>(`/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThongRap}&maNhom=GP01`),
-    getMovieDetail: (MaPhim: string) => api.get<ApiResponse<ThongTinPhim[]>>(`/LayThongTinLichChieuPhim?MaPhim=${MaPhim}`),
+    getMovieDetail: (MaPhim: string) => api.get<ApiResponse<ThongTinPhim>>(`/LayThongTinLichChieuPhim?MaPhim=${MaPhim}`),
 }

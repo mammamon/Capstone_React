@@ -30,6 +30,78 @@ export type Phim = {
   }[];
 };
 
+
+export type ThongTinPhim = {
+  biDanh:string,
+  dangChieu:boolean,
+  danhGia:number,
+  hinhAnh:string,
+  hot:boolean,
+  maNhom:string,
+  maPhim:number,
+  moTa:string,
+  ngayKhoiChieu:string,
+  sapChieu:boolean,
+  tenPhim:string,
+  trailer:string,
+  heThongRapChieu:[
+    {
+      logo:string,
+      maHeThongRap:string,
+      tenHeThongRap:string,
+      cumRapChieu:[
+        {
+          diaChi:string,
+          hinhAnh:string,
+          maCumRap:string,
+          tenCumRap:string,
+          lichChieuPhim:[
+            {
+              giaVe:number,
+              maLichChieu:string,
+              maRap:string,
+              ngayChieuGioChieu:string,
+              tenRap:string,
+              thoiLuong:number
+            }
+          ]
+        }
+      ]
+    }
+  ]
+};
+
+
+// {
+//   heThongRapchieu: [
+//     {
+//       maHeThongRap: string;
+//       tenHeThongRap: string;
+//       logo: string;
+//       cumRapChieu: [
+//         {
+//           maCumRap: string;
+//           tenCumRap: string;
+//           hinhAnh: string;
+//           diaChi: string;
+//           lichChieuPhim: [
+//             {
+//               maLichChieu: string;
+//               maRap: string;
+//               tenRap: string;
+//               ngayChieuGioChieu: string;
+//               giaVe: number;
+//               thoiLuong: number;
+//             }
+//           ];
+          
+//         }
+//       ];
+//     }
+//   ];
+// };
+
+
 // export type LichChieu = [
 //   {
 //     lstCumRap: [
@@ -65,31 +137,3 @@ export type Phim = {
 //     mahom: string;
 //   }
 // ];
-
-export type ThongTinPhim = {
-  heThongRapchieu: [
-    {
-      cumRapChieu: [
-        {
-          lichChieuPhim: [
-            {
-              maLichChieu: string;
-              maRap: string;
-              tenRap: string;
-              ngayChieuGioChieu: string;
-              giaVe: number;
-              thoiLuong: number;
-            }
-          ];
-          maCumRap: string;
-          tenCumRap: string;
-          hinhAnh: string;
-          diaChi: string;
-        }
-      ];
-      maHeThongRap: string;
-      tenHeThongRap: string;
-      logo: string;
-    }
-  ];
-};

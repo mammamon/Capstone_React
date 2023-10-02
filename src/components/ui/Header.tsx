@@ -238,7 +238,7 @@ export const Header = () => {
         })}
       >
         <div className="header-content">
-          <h1 className="brand">
+          <h1 className="brand"   onClick={() => navigate("/")}>
             <span className="text-[var(--primary-color)]">CYBER</span>MOVIE
           </h1>
           <nav>

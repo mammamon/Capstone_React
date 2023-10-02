@@ -5,7 +5,7 @@ import { getCinemaListThunk, getCinemaScheduleThunk, getMovieDetailThunk } from 
 type QuanLyRapInitialState = {
   cinemaList?: HeThongRap[];
   cinemaSchedule?: LichChieu[];
-  movieDetail?:ThongTinPhim[];
+  movieDetail?: ThongTinPhim | undefined;
   isFetchingCinemaList?: boolean;
 };
 

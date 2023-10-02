@@ -9,6 +9,6 @@ const api = apiInstance({
 export const quanLyNguoiDungServices = {
     register: (data: RegisterSchemaType) => api.post('/DangKy', data),
     login: (data: LoginSchemaType) => api.post<ApiResponse<UserLogin>>('/DangNhap', data),
-    update: (data: AccountSchemaType) => api.post<ApiResponse<UserLogin>>('/CapNhatThongTinNguoiDung', data), 
+    update: (data: AccountSchemaType) => api.post('/CapNhatThongTinNguoiDung', data), 
     getUserByAccessToken: () => api.post<ApiResponse<UserByAccessToken>>('/ThongTinTaiKhoan'),
 }

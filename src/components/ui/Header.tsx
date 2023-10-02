@@ -165,7 +165,7 @@ const Container = styled.header`
   @media (max-width: 768px) {
     height: 280px;
     position: fixed;
-    z-index: 1999;
+    z-index: 999;
     box-shadow: none;
     background: transparent;
   }
@@ -299,7 +299,7 @@ const Container = styled.header`
 `;
 
 const ToggleButton = styled.button`
-  position: fixed;
+  position: absolute;
   top: 10px;
   background: #fff;
   padding: 10px;
@@ -313,7 +313,7 @@ const ToggleButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #fff;
+  background: #eee;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   i {
     font-size: 20px;

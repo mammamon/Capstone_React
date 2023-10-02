@@ -20,7 +20,6 @@ export const HomeTemplate = () => {
     const [selectedFilter, setSelectedFilter] = useState('tatCaPhim');
     const [animationKey, setAnimationKey] = useState(0);
 
-
     useEffect(() => {
         dispatch(getMovieListThunk(null));
         dispatch(getCinemaListThunk());
@@ -33,7 +32,7 @@ export const HomeTemplate = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        // tự động chọn cụm rạp đầu tiên
+        // tự động chọn rạp đầu tiên
         if (cinemaList?.length > 0) {
             setSelectedCinemaList(cinemaList[0].maHeThongRap);
         }
@@ -85,7 +84,7 @@ export const HomeTemplate = () => {
             </div>
             <div
                 key={animationKey}
-                className={`movies grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 ${selectedFilter ? 'animate__animated animate__fadeInLeft' : ''
+                className={`movies gap-y-[16px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 ${selectedFilter ? 'animate__animated animate__fadeInLeft' : ''
                     }`}
             >
                 {isFetchingMovieList || isFetchingCinemaList ? (
@@ -98,7 +97,6 @@ export const HomeTemplate = () => {
                         </Card>
                     ))
                 ) : (
-                    // lọc phim kèm điều kiện trong khung tìm kiếm
                     movieList?.filter((movie) => {
                         if (selectedFilter === 'tatCaPhim') {
                             return movie.tenPhim.toLowerCase();
@@ -119,9 +117,9 @@ export const HomeTemplate = () => {
             </div>
 
             <div className="cinema-zone pt-[60px] flex">
-                <div className="cinema-list-wrapper w-1/12">
+                <div className="cinema-list-wrapper md:w-full lg:w-1/12 lg:mr-[10px]">
                     <h2>Cụm rạp</h2>
-                    <div className="cinema-list flex-2 grid-cols-2 gap-4 mt-8">
+                    <div className="cinema-list gap-4 mt-8">
                         {cinemaList?.map((cinema) => (
                             <Card key={cinema.maHeThongRap} hoverable className={selectedCinemaList === cinema.maHeThongRap ? 'selected' : ''}>
                                 <img
@@ -143,7 +141,7 @@ export const HomeTemplate = () => {
                         ))}
                     </div>
                 </div>
-                <div className="cinema-location-wrapper w-3/12 pr-[6px] mr-[30px]">
+                <div className="cinema-location-wrapper w-3/12 pr-[6px] lg:mr-[10px] xl:mr-[30px]">
                     <h2>Địa điểm</h2>
                     <div className="cinema-location mt-8">
                         {cinemaSchedule?.map((schedule) => (
@@ -169,11 +167,11 @@ export const HomeTemplate = () => {
                                 {schedule.lstCumRap.map((cumRap) => (
                                     selectedCumRap === cumRap.maCumRap && cumRap.danhSachPhim.map((phim) => (
                                         <div key={phim.maPhim} className='cinema-schedule-movie flex p-[12px]'>
-                                            <div className='w-2/12 pr-[8px]'>
+                                            <div className='w-1/3 sm:w-1/4 xl:w-2/12 pr-[8px]'>
                                                 <h3>{phim.tenPhim}</h3>
                                                 <img src={phim.hinhAnh} alt={phim.tenPhim} />
                                             </div>
-                                            <div className="showtimes w-10/12">
+                                            <div className="showtimes w-2/3 sm:w-3/4 xl:w-10/12">
                                                 {phim.lstLichChieuTheoPhim &&
                                                     [...phim.lstLichChieuTheoPhim]
                                                         .sort((a, b) => new Date(a.ngayChieuGioChieu).getTime() - new Date(b.ngayChieuGioChieu).getTime())

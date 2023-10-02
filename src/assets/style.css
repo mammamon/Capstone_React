@@ -31,7 +31,7 @@
 .cinema-zone .cinema-location .cinema-name {
   border: 2px solid transparent;
 }
-.cinema-zone .cinema-location .cinema-name h3:hover {
+.cinema-zone .cinema-location .cinema-name:hover h3 {
   color: #e50914;
 }
 .cinema-zone .cinema-location h3 {
@@ -44,8 +44,8 @@
   font-size: 12px;
 }
 .cinema-zone .cinema-list-wrapper h2 {
-  width: 80px;
   margin-left: 0;
+  width: 80px;
 }
 
 .cinema-list .ant-card {
@@ -142,11 +142,67 @@
   cursor: pointer;
 }
 
+@media (max-width: 1024px) {
+  .cinema-zone {
+    flex-direction: column;
+  }
+  .cinema-zone .cinema-list-wrapper,
+  .cinema-zone .cinema-location-wrapper {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .cinema-zone .cinema-list {
+    display: flex;
+    flex-wrap: wrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+  }
+  .cinema-zone .cinema-location {
+    max-width: 340px;
+    max-height: 320px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .cinema-zone .cinema-location .cinema-name {
+    width: 300px;
+    height: 70px;
+  }
+  .cinema-zone .cinema-location .cinema-name img {
+    display: none;
+  }
+  .cinema-zone .cinema-schedule-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .cinema-zone .cinema-schedule-wrapper h2 {
+    margin-top: 10px;
+  }
+}
 .ant-card {
   border: 1px solid #ccc;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease-in-out;
   height: 300px;
+}
+@media (min-width: 768px) {
+  .ant-card {
+    width: calc((100% - 48px) / 3);
+  }
 }
 .ant-card.hover {
   transform: scale(1.05);
@@ -158,10 +214,17 @@
 .ant-card .ant-card-body {
   padding: 8px !important;
 }
-.ant-card .ant-popover-content {
-  z-index: 999999;
-}
 
+.movies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.movies .ant-card {
+  margin: auto;
+  width: 220px !important;
+}
 .movies .ant-card:hover::before {
   content: "Đặt vé ngay";
   text-transform: uppercase;
@@ -212,6 +275,11 @@
   height: 100%;
   object-fit: contain;
 }
+@media (max-width: 700px) {
+  .swiper .swiper-slide {
+    height: 50% !important;
+  }
+}
 
 .swiper-carousel.loading {
   width: 60%;
@@ -222,6 +290,18 @@
   align-items: center;
   position: relative;
   margin: auto;
+}
+@media (max-width: 700px) {
+  .swiper-carousel.loading {
+    height: 300px !important;
+    width: 100%;
+  }
+}
+@media (max-width: 400px) {
+  .swiper-carousel.loading {
+    height: 180px !important;
+    width: 100%;
+  }
 }
 
 .swiper-carousel.loading::before {
@@ -265,4 +345,9 @@
   text-align: center;
   width: 160px;
   border: 2px solid transparent;
+}
+@media (max-width: 530px) {
+  .btn-filter button {
+    font-size: 14px;
+  }
 }/*# sourceMappingURL=style.css.map */

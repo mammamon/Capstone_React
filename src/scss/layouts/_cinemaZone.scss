@@ -21,8 +21,11 @@
     .cinema-location {
         .cinema-name {
             border: 2px solid transparent;
-            h3:hover {
-                color: #e50914;
+
+            &:hover {
+                h3 {
+                    color: #e50914;
+                }
             }
         }
 
@@ -40,8 +43,8 @@
 
     .cinema-list-wrapper {
         h2 {
-            width: 80px;
             margin-left: 0;
+            width: 80px;
         }
     }
 }
@@ -145,5 +148,64 @@
                 cursor: pointer;
             }
         }
+    }
+}
+
+@media (max-width: 1024px) {
+    .cinema-zone {
+        flex-direction: column;
+
+
+        .cinema-list-wrapper,
+        .cinema-location-wrapper {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .cinema-list {
+            display: flex;
+            flex-wrap: wrap;
+            overflow-x: auto;
+            overflow-y: hidden;
+            height: auto;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cinema-location {
+            max-width: 340px;
+            max-height: 320px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            .cinema-name {
+                width: 300px;
+                height: 70px;
+                img {
+                    display: none;
+                }
+            }
+
+        }
+        .cinema-schedule-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            h2 {
+                margin-top: 10px;
+            }
+        }
+
+        
     }
 }

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 export const Footer = () => {
     return (
-        <Container className="mt-[100px] flex flex-col">
+        <Container className="flex flex-col">
             <img
                 className="w-full"
                 src="https://cinestar.com.vn/catalog/view/theme/default/images/line-bg.png"
@@ -24,7 +24,7 @@ export const Footer = () => {
                         <i className="fa-brands fa-youtube"></i>
                     </NavLink>
                 </div>
-                <div className="mt-[40px] flex gap-[100px] info">
+                <div className="mt-[40px] flex flex-wrap gap-[50px] xl:gap-[100px] lg:flex-col sm:flex-col info">
                     <div>
                         <p className="font-700 text-20">
                             <span className="text-[var(--primary-color)]">CYBER</span>
@@ -77,7 +77,7 @@ const Container = styled.footer`
             font-size: 26px;
             color: #111;
             display: flex;
-            gap: 30px;
+            gap: 15px;
             i {
                 cursor: pointer;
                 transition: all 0.3s ease-in-out;
@@ -98,6 +98,19 @@ const Container = styled.footer`
                     /* font-weight: 600; */
                 }
             }
+        }
+    }
+
+    @media (min-width: 640px) {
+        .info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .info {
+            grid-template-columns: repeat(4, 1fr);
         }
     }
 `

@@ -93,3 +93,42 @@ export type ThongTinPhim = {
     }
   ];
 };
+// export type ThongTinPhim = {
+//   biDanh:string,
+//   dangChieu:boolean,
+//   danhGia:number,
+//   hinhAnh:string,
+//   hot:boolean,
+//   maNhom:string,
+//   maPhim:number,
+//   moTa:string,
+//   ngayKhoiChieu:string,
+//   sapChieu:boolean,
+//   tenPhim:string,
+//   trailer:string,
+//   heThongRapChieu:[
+//     {
+//       logo:string,
+//       maHeThongRap:string,
+//       tenHeThongRap:string,
+//       cumRapChieu:[
+//         {
+//           diaChi:string,
+//           hinhAnh:string,
+//           maCumRap:string,
+//           tenCumRap:string,
+//           lichChieuPhim:[
+//             {
+//               giaVe:number,
+//               maLichChieu:string,
+//               maRap:string,
+//               ngayChieuGioChieu:string,
+//               tenRap:string,
+//               thoiLuong:number
+//             }
+//           ]
+//         }
+//       ]
+//     }
+//   ]
+// };

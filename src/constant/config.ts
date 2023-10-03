@@ -3,4 +3,5 @@ export const PATH = {
     register: '/register',
     account: '/account',
     detail:'/detail/:detailId',
+    booking:'/booking/:bookingId',
 }

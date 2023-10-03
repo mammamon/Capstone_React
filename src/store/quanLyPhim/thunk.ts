@@ -1,5 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { quanLyPhimServices } from 'services/quanLyPhim'
+import { sleep } from 'utils'
+
 
 export const getMovieListThunk = createAsyncThunk(
     'quanLyPhim/getMovieList',
@@ -9,6 +11,7 @@ export const getMovieListThunk = createAsyncThunk(
             const randomIndex = Math.floor(Math.random() * maNhomOptions.length);
             const maNhom = maNhomOptions[randomIndex];
             const data = await quanLyPhimServices.getMovieList(`?maNhom=${maNhom}${maCumRap ? `&maCumRap=${maCumRap}` : ''}`)
+            await sleep(700)
             return data.data.content
         } catch (err) {
             return rejectWithValue(err)

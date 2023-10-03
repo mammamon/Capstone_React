@@ -1,13 +1,15 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Input, Button } from 'components'
+import { PATH } from 'constant'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { generatePath, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { LoginSchema, LoginSchemaType } from 'schema'
 import { RootState, useAppDispatch } from 'store'
 import { loginThunk } from 'store/quanLyNguoiDung'
 import { handleError } from 'utils'
+import { useEffect} from "react";
 
 export const LoginTemplate = () => {
     const {
@@ -18,21 +20,39 @@ export const LoginTemplate = () => {
         mode: 'onChange',
         resolver: zodResolver(LoginSchema),
     })
-
+    useEffect(()=>{
+        localStorage.getItem("bookingId")&&toast.info('Dăng nhập trước khi đặt vé!', {
+            position: "top-center",
+            autoClose: 1000,
+        })
+    },[ localStorage.getItem("bookingId")])
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const { isFetchingLogin } = useSelector((state: RootState) => state.quanLyNguoiDung)
 
     const onSubmit: SubmitHandler<LoginSchemaType> = (value) => {
+        
         console.log('value: ', value)
         dispatch(loginThunk(value))
             .unwrap()
             .then(() => {
-                toast.success('Đăng nhập thành công!', {
-                    position: "top-center",
-                    autoClose: 1000,
-                })
-                navigate('/')
+               
+                if(localStorage.getItem("bookingId")){
+                    const path = generatePath(PATH.booking, {
+                        bookingId: localStorage.getItem("bookingId"),
+                      });
+                      navigate(path);
+                      localStorage.removeItem("bookingId")
+                }
+                else {
+                    toast.success('Đăng nhập thành công!', {
+                        position: "top-center",
+                        autoClose: 1000,
+                    })
+                    navigate('/')
+                }
+                
+                    
             })
             .catch((err) => {
                 handleError(err)

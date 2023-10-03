@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { Avatar, Button, Input, Popover } from 'components';
 import { PATH } from 'constant';
@@ -189,7 +189,7 @@ export const Header = () => {
   const [isHeaderVisible, setIsHeaderVisible] = useState<boolean>(true);
   const [isInputVisible, setInputVisible] = useState(true);
   const toggleInputVisibility = () => setInputVisible(!isInputVisible);
-
+  const {bookingId} = useParams()
   const handleScroll = () => {
     if (window.pageYOffset > 50) {
       setScroll(true);
@@ -287,8 +287,13 @@ export const Header = () => {
                     <Button
                       className="!h-[46px]"
                       type="primary"
-                      onClick={() =>
+                      onClick={() =>{
                         dispatch(quanLyNguoiDungActions.logOut('abc'))
+                        if(!localStorage.getItem("bookingId")){
+                          navigate(PATH.login)
+                          localStorage.setItem("bookingId",bookingId)
+                        }
+                      }
                       }
                     >
                       <i className="fa-solid fa-arrow-right-from-bracket text-16"></i>

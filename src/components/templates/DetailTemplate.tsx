@@ -26,19 +26,17 @@ export const DetailTemplate = () => {
     "Thứ Bảy",
     "Chủ Nhật",
   ];
-
   useEffect(() => {
     dispatch(getMovieDetailThunk(detailId));
   }, [dispatch, detailId]);
   useEffect(() => {
-    // tự động chọn cụm rạp đầu tiên khi load pageư
+
     if (movieDetail?.heThongRapChieu?.length > 0) {
       setSelectedCinemaList(movieDetail?.heThongRapChieu[0]);
       setSelectedCumRap(movieDetail.heThongRapChieu[0].cumRapChieu);
     }
   }, [movieDetail]);
-  console.log(movieDetail);
-  console.log(selectedCumRap);
+
   return (
     <div className="detail-movie">
       <div className="detail-card flex">
@@ -127,6 +125,7 @@ export const DetailTemplate = () => {
             </Card>
           ))}
         </div>
+        
         <div className="cinema-location mt-8 w-8/12">
           <Tabs
             defaultActiveKey={checkDate.number()}
@@ -140,6 +139,7 @@ export const DetailTemplate = () => {
                 children:(          
                 <div >
                   {selectedCumRap?.map((rap) => (
+                    rap.lichChieuPhim.find((lich)=> !checkDate.day(selectedDay,lich.ngayChieuGioChieu))&&
               <div key={rap.maCumRap}>
                 <div>
                   <div className="grid grid-cols-[100px_minmax(0,1fr)] grid-rows-2 gap-5 my-10">
@@ -155,15 +155,17 @@ export const DetailTemplate = () => {
                       <div className="time-movie">
                         {rap?.lichChieuPhim.map((lichChieu) => (
 
-                          checkDate.day(
-                                selectedDay,
-                                lichChieu.ngayChieuGioChieu
-                              )?<p className="text-red-500">Không có xuất chiếu</p>:<Button
+                          <Button
                             onClick={() => {
                               const path = generatePath(PATH.booking, {
                                 bookingId: lichChieu.maLichChieu,
                               });
-                              navigate(path);
+                              if(localStorage.getItem("ACCESSTOKEN")){
+                                navigate(path);
+                              }else{
+                                navigate(PATH.login)
+                                localStorage.setItem("bookingId",lichChieu.maLichChieu)
+                              }
                             }}
                             className={cs({
                               "!hidden": checkDate.day(
@@ -187,47 +189,6 @@ export const DetailTemplate = () => {
               };
             })}
           />
-          {/* <div style={{ height: 300, overflow: "auto" }}>
-            {selectedCumRap?.map((rap) => (
-              <div key={rap.maCumRap}>
-                <div>
-                  <div className="grid grid-cols-[100px_minmax(0,1fr)] grid-rows-2 gap-5 my-10">
-                    <div>
-                      <img src={rap.hinhAnh} className=" mr-12" />
-                    </div>
-                    <div className="row-span-2 grid grid-cols-1 grid-rows-[100px_minmax(0,1fr)]">
-                      <div className="info-cinema mt-20 ">
-                        <h3>{rap.tenCumRap}</h3>
-                        <p>{rap.diaChi}</p>
-                      </div>
-
-                      <div className="time-movie">
-                        {rap.lichChieuPhim.map((lichChieu) => (
-                          <Button
-                            onClick={() => {
-                              const path = generatePath(PATH.booking, {
-                                bookingId: lichChieu.maLichChieu,
-                              });
-                              navigate(path);
-                            }}
-                            className={cs({
-                              "!hidden": checkDate.day(
-                                selectedDay,
-                                lichChieu?.ngayChieuGioChieu
-                              ),
-                            })}
-                            key={lichChieu.maLichChieu}
-                          >
-                            {formatTime(lichChieu.ngayChieuGioChieu)}
-                          </Button>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div> */}
         </div>
       </div>
     </div>

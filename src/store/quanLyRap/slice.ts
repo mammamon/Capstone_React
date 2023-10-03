@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { HeThongRap} from 'types'; 
+import { HeThongRap, ThongTinPhim} from 'types'; 
 import { getCinemaListThunk, getCinemaScheduleThunk } from './thunk'; 
 
 type QuanLyRapInitialState = {
   cinemaList?: HeThongRap[];
   cinemaSchedule?: HeThongRap[];
+  movieDetail?: ThongTinPhim | undefined;
   isFetchingCinemaList?: boolean;
 };
 

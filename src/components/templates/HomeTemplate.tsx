@@ -8,9 +8,12 @@ import { getMovieListThunk } from 'store/quanLyPhim';
 import { quanLyBannerServices } from '../../services/quanLyBanner';
 import { getCinemaListThunk, getCinemaScheduleThunk } from 'store/quanLyRap';
 import { formatTime } from '../../utils/formatTime';
+import { generatePath, useNavigate } from "react-router-dom";
+import { PATH } from "constant";
 
 export const HomeTemplate = () => {
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
     const { movieList, isFetchingMovieList } = useSelector((state: RootState) => state.quanLyPhim);
     const { cinemaList, isFetchingCinemaList } = useSelector((state: RootState) => state.quanLyRap);
     const [banners, setBanners] = useState([]);
@@ -109,6 +112,12 @@ export const HomeTemplate = () => {
                             hoverable
                             style={{ width: 240 }}
                             cover={<img alt='example' src={movie.hinhAnh} />}
+                            onClick={() => {
+                                const path = generatePath(PATH.detail, {
+                                  detailId: movie.maPhim,
+                                })
+                                navigate(path)
+                              }}
                         >
                             <Card.Meta title={movie.tenPhim} description={movie.moTa.substring(0, 30)} />
                         </Card>

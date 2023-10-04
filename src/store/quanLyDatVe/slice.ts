@@ -1,20 +1,47 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Chair } from "types";
+import { BookedChair, Chair } from "types";
+import { getChairListThunk, bookedChairListThunk } from "./thunk";
 
 type QuanLyDatVeInitialState = {
-	chairList?:Chair
-	isFetchingChairList?: boolean
-}
+  chairList?: Chair;
+  bookedList?: BookedChair;
+  isFetchingChairList?: boolean;
+  isFetchingBookedList?: boolean;
+};
 
-const initialState : QuanLyDatVeInitialState={}
+const initialState: QuanLyDatVeInitialState = {
+  isFetchingChairList: false,
+};
 
-const quanLyDatVeSlice =createSlice({
-	name:'quanLyDatVe',
-	initialState,
-	reducers:{},
-	extraReducers() {
-		
-	},
-})
+const quanLyDatVeSlice = createSlice({
+  name: "quanLyDatVe",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(getChairListThunk.pending, (state) => {
+        state.isFetchingChairList = true;
+      })
+      .addCase(getChairListThunk.rejected, (state) => {
+        state.isFetchingChairList = false;
+      })
+      .addCase(getChairListThunk.fulfilled, (state, action) => {
+        state.chairList = action.payload;
+        state.isFetchingChairList = false;
+      });
+    builder
+      .addCase(bookedChairListThunk.pending, (state) => {
+        state.isFetchingChairList = false;
+      })
+      .addCase(bookedChairListThunk.rejected, (state) => {
+        state.isFetchingChairList = false;
+      })
+      .addCase(bookedChairListThunk.fulfilled, (state, action) => {
+        state.bookedList = action.payload;
+        state.isFetchingChairList = true;
+      });
+  },
+});
 
-export const {actions: quanLyDatVeActions, reducer: quanLyDatVeReducer} = quanLyDatVeSlice
+export const { actions: quanLyDatVeActions, reducer: quanLyDatVeReducer } =
+  quanLyDatVeSlice;

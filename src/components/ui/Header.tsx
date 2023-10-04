@@ -289,9 +289,11 @@ export const Header = () => {
                       type="primary"
                       onClick={() =>{
                         dispatch(quanLyNguoiDungActions.logOut('abc'))
-                        if(!localStorage.getItem("bookingId")){
-                          navigate(PATH.login)
-                          localStorage.setItem("bookingId",bookingId)
+                        if(bookingId){
+                          if(!localStorage.getItem("bookingId")){
+                           navigate(PATH.login)
+                           localStorage.setItem("bookingId",bookingId)
+                         }
                         }
                       }
                       }

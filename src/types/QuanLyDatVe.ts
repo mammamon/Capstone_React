@@ -1,5 +1,5 @@
 export type Chair = {
-  thongtinPhim: {
+  thongTinPhim: {
     maLichChieu: number;
     tenCumRap: string;
     tenRap: string;
@@ -9,7 +9,7 @@ export type Chair = {
     ngayChieu: string;
     gioChieu: string;
   };
-  danhSachGhe: [
+  danhSachGhe: 
     {
       maGhe: number;
       tenGhe: string;
@@ -19,6 +19,15 @@ export type Chair = {
       giaVe: number;
       daDat: boolean;
       taiKhoanNguoiDat: string;
-    }
-  ];
+    }[]
+  ;
 };
+
+export type BookedChair = {
+  maLichChieu: number,
+  danhSachVe: 
+    {
+      maGhe: number,
+      giaVe: number
+    }[]
+}

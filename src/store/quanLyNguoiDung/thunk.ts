@@ -17,7 +17,7 @@ export const loginThunk = createAsyncThunk(
 )
 
 export const getUserByAccessTokenThunk = createAsyncThunk(
-    'quanLyNguoiDung/getUserByAccesToken',
+    'quanLyNguoiDung/getUserByAccessToken',
     async (_, { rejectWithValue }) => {
         try {
             const token = getAccessToken()

@@ -461,3 +461,23 @@
   }
 }/*# sourceMappingURL=style.css.map */
 
+/* booking movie */
+.booking-movie .chair-booking .booked{
+  background-color: orange;
+  color: white;
+}
+.booking-movie .chair-booking .vip{
+  background-color: red;
+  color: white;
+}
+.booking-movie .chair-booking .vip:hover{
+  background-color: white;
+  color: red;
+  border-color: red;
+}
+
+.booking-movie .chair-booking .selected{
+  background-color: rgb(25, 218, 25);
+  color: white;
+  border: none!important;
+}

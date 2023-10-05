@@ -1,11 +1,12 @@
-// import styled from 'styled-components'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button, Input } from 'components/ui'
 import { useAuth } from 'hooks'
 import { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
 import { AccountSchema, AccountSchemaType } from 'schema/AccountSchema'
-// import styled from 'styled-components'
+import { AppDispatch } from 'store'
+import { updateThunk } from 'store/quanLyNguoiDung/thunk';
 
 export const AccountInfo = () => {
     const { user } = useAuth()
@@ -18,13 +19,11 @@ export const AccountInfo = () => {
         resolver: zodResolver(AccountSchema),
         mode: 'onChange',
     })
-
+    const dispatch = useDispatch<AppDispatch>();
     const onSubmit: SubmitHandler<AccountSchemaType> = (value) => {
-        console.log('value: ', value)
-        // gọi API update tài khoản
-
-        // dispatch action getUserByAccessToken
+        dispatch(updateThunk(value));
     }
+
 
     useEffect(() => {
         reset({
@@ -77,8 +76,8 @@ export const AccountInfo = () => {
                 className="[&>label]:text-black [&>input]:bg-transparent [&>input]:border [&>input]:border-black [&>input]:text-black"
                 label="Mã loại người dùng"
                 name="maLoaiNguoiDung"
-                error={errors?.maLoaiNguoiDung?.message}
                 register={register}
+                selectOptions={['KhachHang', 'QuanTri']}
             />
             <div className="text-right mt-20">
                 <Button htmlType="submit" type="primary" className="!h-[46px]">
@@ -88,13 +87,3 @@ export const AccountInfo = () => {
         </form>
     )
 }
-
-// const InputS = styled(Input)`
-//     label {
-//         color: #111;
-//     }
-
-//     input {
-
-//     }
-// `

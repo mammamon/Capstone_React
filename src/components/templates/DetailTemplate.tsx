@@ -159,6 +159,7 @@ export const DetailTemplate = () => {
                                 selectedDay,
                                 lichChieu.ngayChieuGioChieu
                               )?<p className="text-red-500">Không có xuất chiếu</p>:<Button
+
                             onClick={() => {
                               const path = generatePath(PATH.booking, {
                                 bookingId: lichChieu.maLichChieu,
@@ -175,6 +176,7 @@ export const DetailTemplate = () => {
                           >
                             {formatTime(lichChieu.ngayChieuGioChieu)}
                           </Button>
+
                         ))}
                       </div>
                     </div>
@@ -233,3 +235,4 @@ export const DetailTemplate = () => {
     </div>
   );
 };
+

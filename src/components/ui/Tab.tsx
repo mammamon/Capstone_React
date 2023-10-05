@@ -5,4 +5,3 @@ type TabsProps = TabsPropsA & TabPaneProps
 export const Tab = (props: TabsProps) => {
     return <TabsA {...props} />
 }
-

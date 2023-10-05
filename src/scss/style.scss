@@ -1,0 +1,27 @@
+// style.scss
+
+// Import variables
+@import 'abstracts/variables';
+
+// Import base styles
+// @import 'base/reset';
+// @import 'base/typography';
+// @import 'base/base';
+
+// Import layout styles
+@import 'layouts/cinemaZone';
+@import 'layouts/detailmovie';
+
+// Import component styles
+@import 'components/card';
+@import 'components/searchBar';
+@import 'components/swiperCarousel';
+
+// Import page styles
+@import 'pages/home';
+
+// Import theme styles
+// @import 'themes/theme';
+
+// Import vendor styles
+@import 'vendors/antd';

@@ -7,3 +7,4 @@ type ImageProps = ImagePropsA & {
 export const Image = (props: ImageProps) => {
     return <ImageA {...props} />
 }
+

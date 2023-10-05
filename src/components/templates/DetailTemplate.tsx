@@ -159,31 +159,24 @@ export const DetailTemplate = () => {
                                 selectedDay,
                                 lichChieu.ngayChieuGioChieu
                               )?<p className="text-red-500">Không có xuất chiếu</p>:<Button
-                              onClick={() => {
-                                const path = generatePath(PATH.booking, {
-                                  bookingId: lichChieu.maLichChieu,
-                                });
-                                navigate(path);
-                              }}
-                              className={cs({
-                                "!hidden": checkDate.day(
-                                  selectedDay,
-                                  lichChieu.ngayChieuGioChieu.date
-                                ),
-                              })}
-                              key={lichChieu.maLichChieu}
-                            >
-                              <p key={lichChieu.maLichChieu}>
-                                <span className="date">
-                                  {formatTime(lichChieu.ngayChieuGioChieu).date}
-                                </span>
-                                <br></br>
-                                <span className="time">
-                                  {formatTime(lichChieu.ngayChieuGioChieu).time}
-                                </span>
-                              </p>
-                            </Button>
-                            
+
+                            onClick={() => {
+                              const path = generatePath(PATH.booking, {
+                                bookingId: lichChieu.maLichChieu,
+                              });
+                              navigate(path);
+                            }}
+                            className={cs({
+                              "!hidden": checkDate.day(
+                                selectedDay,
+                                lichChieu.ngayChieuGioChieu
+                              ),
+                            })}
+                            key={lichChieu.maLichChieu}
+                          >
+                            {formatTime(lichChieu.ngayChieuGioChieu)}
+                          </Button>
+
                         ))}
                       </div>
                     </div>
@@ -242,3 +235,4 @@ export const DetailTemplate = () => {
     </div>
   );
 };
+

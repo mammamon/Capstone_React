@@ -6,6 +6,7 @@ import { getAccessToken } from 'utils'
 type QuanLyNguoiDungInitialState = {
     accessToken?: string
     userLogin?: UserLogin | UserByAccessToken
+    userBooked?:UserByAccessToken;
     isFetchingLogin?: boolean
 }
 
@@ -48,6 +49,8 @@ const quanLyNguoiDungSlice = createSlice({
 
             .addCase(getUserByAccessTokenThunk.fulfilled, (state, { payload }) => {
                 state.userLogin = payload
+                state.userBooked = payload
+                
             })
     },
 })

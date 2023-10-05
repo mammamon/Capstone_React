@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { HeThongRap, ThongTinPhim} from 'types'; 
-import { getCinemaListThunk, getCinemaScheduleThunk } from './thunk'; 
+import { getCinemaListThunk, getCinemaScheduleThunk, getMovieDetailThunk } from './thunk'; 
 
 type QuanLyRapInitialState = {
   cinemaList?: HeThongRap[];
@@ -20,6 +20,9 @@ const quanLyRapSlice = createSlice({
     });
     builder.addCase(getCinemaScheduleThunk.fulfilled, (state, action) => {
       state.cinemaSchedule = action.payload; 
+    });
+    builder.addCase(getMovieDetailThunk.fulfilled, (state, action) => {
+      state.movieDetail = action.payload; 
     });
   },
 });

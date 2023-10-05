@@ -1,5 +1,5 @@
 import { Card, Skeleton } from 'components';
-import 'animate.css';
+import "animate.css";
 import SwiperCarousel from '../../components/ui/SwiperCarousel';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -35,7 +35,6 @@ export const HomeTemplate = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        // tự động chọn rạp đầu tiên
         if (cinemaList?.length > 0) {
             setSelectedCinemaList(cinemaList[0].maHeThongRap);
         }
@@ -56,7 +55,6 @@ export const HomeTemplate = () => {
         }
     }, [cinemaSchedule, selectedCinemaList]);
 
-    // trigger animation khi click vào một trong 3 nút
     const handleFilterClick = (filter) => {
         setSelectedFilter(filter);
         setAnimationKey((prevKey) => prevKey + 1);
@@ -203,3 +201,17 @@ export const HomeTemplate = () => {
         </div>
     )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

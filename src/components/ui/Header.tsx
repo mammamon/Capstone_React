@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { Avatar, Button, Input, Popover } from 'components';
 import { PATH } from 'constant';
 import { useAuth } from 'hooks';
-import { useAppDispatch } from 'store';
+import {  useAppDispatch } from 'store';
 import { quanLyNguoiDungActions } from 'store/quanLyNguoiDung';
-import cn from 'classnames';
+import {useState,useEffect} from "react"
+import cn from 'classnames'
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ export const Header = () => {
   const [isSmallScreen, setIsSmallScreen] = useState<boolean>(false);
   const [isHeaderVisible, setIsHeaderVisible] = useState<boolean>(true);
   const [isInputVisible, setInputVisible] = useState(true);
-
+  const {bookingId} = useParams()
   const toggleInputVisibility = () => setInputVisible(!isInputVisible);
 
   const handleScroll = () => {
@@ -67,7 +67,7 @@ export const Header = () => {
         })}
       >
         <div className="header-content">
-          <h1 className="brand" onClick={() => navigate("/")}>
+          <h1 className="brand"   onClick={() => navigate("/")}>
             <span className="text-[var(--primary-color)]">CYBER</span>MOVIE
           </h1>
           <nav>
@@ -116,8 +116,15 @@ export const Header = () => {
                     <Button
                       className="!h-[46px]"
                       type="primary"
-                      onClick={() =>
+                      onClick={() =>{
                         dispatch(quanLyNguoiDungActions.logOut('abc'))
+                        if(bookingId){
+                          if(!localStorage.getItem("bookingId")){
+                           navigate(PATH.login)
+                           localStorage.setItem("bookingId",bookingId)
+                         }
+                        }
+                      }
                       }
                     >
                       <i className="fa-solid fa-arrow-right-from-bracket text-16"></i>
@@ -144,14 +151,7 @@ export const Header = () => {
             )}
           </div>
         </div>
-        {isInputVisible && (
-          <Input
-            name="searchInput"
-            placeholder="Tìm kiếm tên phim"
-            type="text"
-            className="search-input"
-          />
-        )}
+      {isInputVisible && <Input placeholder="Tìm kiếm tên phim" className='search-input' />}
       </Container>
     </>
   );
@@ -327,4 +327,5 @@ const ToggleButton = styled.button`
   @media (min-width: 769px) {
     display: none;
   }
-};`
+
+;`

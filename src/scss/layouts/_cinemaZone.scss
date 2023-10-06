@@ -141,7 +141,9 @@
             margin: 2px;
             text-align: center;
             flex-grow: 1;
-            max-width: 100px;
+            max-width: 100px !important;
+            min-width: 100px !important;
+            width: 100px;
 
             &:hover {
                 background-color: #ccc;

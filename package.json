@@ -13,10 +13,10 @@
   "dependencies": {
     "@hookform/resolvers": "^3.3.0",
     "@reduxjs/toolkit": "^1.9.5",
+    "animate.css": "^4.1.1",
     "antd": "^5.8.6",
     "axios": "^1.5.0",
     "capstonereact": "https://github.com/mammamon/Capstone_React.git",
-    "animate.css": "^4.1.1",
     "classnames": "^2.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

@@ -5,7 +5,7 @@ import { getAccessToken } from "utils";
 
 type QuanLyNguoiDungInitialState = {
   accessToken?: string;
-  userLogin?: UserLogin ;
+  userLogin?: UserLogin|UserByAccessToken;
   userBooked?:UserByAccessToken;
   isFetchingLogin?: boolean;
 };
@@ -51,6 +51,7 @@ const quanLyNguoiDungSlice = createSlice({
       getUserByAccessTokenThunk.fulfilled,
       (state, { payload }) => {
         state.userBooked = payload;
+        state.userLogin = payload;
       }
     );
   },

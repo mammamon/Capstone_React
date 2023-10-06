@@ -1,4 +1,5 @@
 /* detail movie */
+
 .detail-movie .detail-card {
     background-image: url(/images/logo_detail_movie_bg.jpg);
     background-position: center;
@@ -6,6 +7,9 @@
     background-size: cover;
     color: white;
     margin-bottom: 10px;
+    @include table {     
+      font-size: 500px!important;   
+     } 
   }
   
   .detail-movie .detail-card .btn-trailer{

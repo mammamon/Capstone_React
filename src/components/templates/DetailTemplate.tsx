@@ -1,4 +1,4 @@
-import { Image, Rate, Button, Card, Tabs, Scroll } from "components";
+import {  Rate, Button, Card, Tabs, Scroll } from "components";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { generatePath, useNavigate, useParams } from "react-router-dom";
@@ -39,11 +39,11 @@ export const DetailTemplate = () => {
 
   return (
     <div className="detail-movie">
-      <div className="detail-card flex">
+      <div className="detail-card flex p-10">
         <div className="movie-icon w-4/12 ">
-          <Image width={350} height={500} src={movieDetail?.hinhAnh} />
+          <img className="rounded-6 w-full h-full" src={movieDetail?.hinhAnh} />
         </div>
-        <div className="movie-info w-8/12 ">
+        <div className="movie-info w-8/12 ml-4 ">
           <h2 className="text-30 font-600">{movieDetail?.tenPhim}</h2>
           <p className="mt-6 text-20">{movieDetail?.moTa}</p>
           {movieDetail?.dangChieu ? (

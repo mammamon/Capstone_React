@@ -10,7 +10,7 @@ export const AccountTemplate = () => {
                     {
                         key: 'accountInfo',
                         label: 'Thông tin tài khoản',
-                        children: <AccountInfo />,
+                        children: <AccountInfo/>,
                     },
                     {
                         key: 'accountHistoryBooking',

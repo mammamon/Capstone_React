@@ -245,7 +245,6 @@
 }
 
 /* max-width: 1024px ---------------------------------------------------------------------------------------- */
-
 @media (max-width: 1024px) {
   .detail-movie .detail-card {
     display: flex;
@@ -275,14 +274,12 @@
   .detail-movie .cinema .cinema-list {
     width: 30%;
   }
-
   .detail-movie .cinema .cinema-list .cinema-group img {
     width: 30%;
   }
   .detail-movie .cinema .cinema-list .cinema-group p {
     font-size: 18px;
   }
-
   .detail-movie .cinema .cinema-location {
     width: 70%;
   }
@@ -292,7 +289,6 @@
   }
 }
 /* max-width: 768px ---------------------------------------------------------------------------------------- */
-
 @media (max-width: 768px) {
   .detail-movie .detail-card {
     /* height: 100%; */
@@ -317,7 +313,6 @@
   }
 }
 /* max-width: 480px ----------------------------------------------------------------------------------------------- */
-
 @media (max-width: 600px) {
   .detail-movie .detail-card {
     height: 400px;
@@ -337,7 +332,7 @@
     margin-left: auto;
   }
   /* thông tin phim------------------------------ */
-  .detail-movie .detail-card .movie-info{
+  .detail-movie .detail-card .movie-info {
     width: 100%;
   }
   .detail-movie .detail-card .movie-info h2 {
@@ -348,7 +343,6 @@
   }
 }
 /* min-width: 1025px ----------------------------------------------------------------------------------------------- */
-
 @media (min-width: 600px) {
   .detail-movie .detail-card {
     display: flex;
@@ -378,14 +372,12 @@
   .detail-movie .cinema .cinema-list {
     width: 30%;
   }
-
   .detail-movie .cinema .cinema-list .cinema-group img {
     width: 30%;
   }
   .detail-movie .cinema .cinema-list .cinema-group p {
     font-size: 18px;
   }
-
   .detail-movie .cinema .cinema-location {
     width: 70%;
   }
@@ -395,6 +387,39 @@
   }
 }
 /* ---------------------------------------------------------------------------------------------------------------------- */
+/* booking movie */
+.booking-movie .chair-booking .booked {
+  background-color: orange;
+  color: white;
+}
+
+.booking-movie .chair-booking .vip {
+  background-color: red;
+  color: white;
+}
+
+.booking-movie .chair-booking .vip:hover {
+  background-color: white;
+  color: red;
+  border-color: red;
+}
+
+.booking-movie .chair-booking .selected {
+  background-color: rgb(25, 218, 25);
+  color: white;
+  border: none !important;
+}
+
+/* max-width: 640px ---------------------------------------------------------------------------------------- */
+@media (max-width: 639px) {
+  .booking-movie .bill {
+    margin-top: 10px;
+  }
+  .booking-movie .bill .booked-detail {
+    display: flex;
+    justify-content: space-between;
+  }
+}
 .ant-card {
   border: 1px solid #ccc;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -554,45 +579,8 @@
   }
 }
 
-
-
 @media (max-width: 768px) {
   .ant-tabs-nav {
     width: 155px;
   }
-} /*# sourceMappingURL=style.css.map */
-
-/* booking movie */
-.booking-movie .chair-booking .booked {
-  background-color: orange;
-  color: white;
 }
-.booking-movie .chair-booking .vip {
-  background-color: red;
-  color: white;
-}
-.booking-movie .chair-booking .vip:hover {
-  background-color: white;
-  color: red;
-  border-color: red;
-}
-
-.booking-movie .chair-booking .selected {
-  background-color: rgb(25, 218, 25);
-  color: white;
-  border: none !important;
-}
-/* max-width: 640px ---------------------------------------------------------------------------------------- */
-
-@media (max-width: 639px) {
-  .booking-movie .bill{
-    margin-top: 10px;
-  }
-  .booking-movie .bill .booked-detail{
-    display: flex;
-    justify-content: space-between;
-  }
-}
-
-
-/*# sourceMappingURL=style.css.map */

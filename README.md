@@ -20,5 +20,3 @@
 
 ## Known Bugs
 1. Post Request (cập nhật thông tin người dùng) gọi tới server trả về lỗi 403, test trên swagger/postman thêm chính xác token cybersoft và bearer token vẫn bị lỗi 403
-
-2. Chức năng search chưa hoạt động

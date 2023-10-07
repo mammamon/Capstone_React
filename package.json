@@ -16,7 +16,6 @@
     "animate.css": "^4.1.1",
     "antd": "^5.8.6",
     "axios": "^1.5.0",
-    "capstonereact": "https://github.com/mammamon/Capstone_React.git",
     "classnames": "^2.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

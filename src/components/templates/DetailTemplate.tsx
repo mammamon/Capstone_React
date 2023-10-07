@@ -39,11 +39,11 @@ export const DetailTemplate = () => {
 
   return (
     <div className="detail-movie">
-      <div className="detail-card flex p-10">
-        <div className="movie-icon w-4/12 ">
-          <img className="rounded-6 w-full h-full" src={movieDetail?.hinhAnh} />
+      <div className="detail-card xl:flex p-10 !h-auto">
+        <div className="movie-icon xl:w-4/12 ">
+          <img className="rounded-6 w-full xl:h-full" src={movieDetail?.hinhAnh} />
         </div>
-        <div className="movie-info w-8/12 ml-4 ">
+        <div className="movie-info xl:w-8/12 ml-4 ">
           <h2 className="text-30 font-600">{movieDetail?.tenPhim}</h2>
           <p className="mt-6 text-20">{movieDetail?.moTa}</p>
           {movieDetail?.dangChieu ? (
@@ -91,11 +91,10 @@ export const DetailTemplate = () => {
         id="booking-list"
         className={cs(
           { "!hidden": movieDetail?.heThongRapChieu?.length <= 0 },
-          "cinema-zone",
-          "flex"
+          "cinema !w-full xl:flex mt-8",
         )}
       >
-        <div className="cinema-list mt-8 mr-10 w-3/12">
+        <div className="cinema-list mr-10 xl:w-3/12">
           {movieDetail?.heThongRapChieu.map((cinema) => (
             <Card
               key={cinema.maHeThongRap}
@@ -104,7 +103,7 @@ export const DetailTemplate = () => {
                 {
                   selected:
                     selectedCinemaList?.maHeThongRap === cinema.maHeThongRap,
-                },
+                },"cinema-group",
                 "!w-full",
                 "!h-auto",
                 "!mb-10"
@@ -118,7 +117,7 @@ export const DetailTemplate = () => {
                 <img
                   src={cinema.logo}
                   alt={cinema.tenHeThongRap}
-                  className="w-[100px] h-auto mr-10"
+                  className="h-auto mr-10"
                 />
                 <p className="text-20">{cinema.tenHeThongRap}</p>
               </div>
@@ -126,7 +125,7 @@ export const DetailTemplate = () => {
           ))}
         </div>
         
-        <div className="cinema-location mt-8 w-8/12">
+        <div className="cinema-location xl:w-8/12">
           <Tabs
             defaultActiveKey={checkDate.number()}
             onTabClick={(activeKey) => {

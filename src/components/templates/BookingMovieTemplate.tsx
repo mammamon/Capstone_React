@@ -100,8 +100,8 @@ export const BookingMovieTemplate = () => {
           <p>{chairList?.thongTinPhim.tenRap}</p>
         </div>
       </div>
-      <div className="flex mt-10 justify-between">
-        <div className="chair-booking w-8/12">
+      <div className="sm:flex chair-list mt-10 sm:justify-between">
+        <div className="chair-booking sm:w-8/12">
           <p className="w-full bg-orange-500 text-16 font-500 shadow-[0px_25px_25px_-7px_rgba(0,0,255,0.9)] text-center">
             Screen
           </p>
@@ -149,27 +149,27 @@ export const BookingMovieTemplate = () => {
             </div>
           </div>
         </div>
-        <div className="bill w-4/12 ml-10 border p-5 h-fit shadow-xl bg-gray-200">
+        <div className="bill sm:w-4/12 ml-10 border p-5 h-fit shadow-xl bg-gray-200">
           <h2 className="text-center text-red-500 font-500 mb-20">
             {chairList?.thongTinPhim.tenPhim}
           </h2>
-          <div className="flex justify-between mb-10">
+          <div className="lg:flex booked-detail lg:justify-between mb-10">
             <p className="font-500">Ngày chiếu giờ chiếu</p>
             <p>
               {chairList?.thongTinPhim.ngayChieu} |{" "}
               {chairList?.thongTinPhim.gioChieu}
             </p>
           </div>
-          <div className="flex justify-between mb-10">
+          <div className="lg:flex booked-detail lg:justify-between mb-10">
             <p className="font-500">Cụm rạp</p>
             <p>{chairList?.thongTinPhim.tenCumRap}</p>
           </div>
-          <div className="flex justify-between mb-10">
+          <div className="lg:flex booked-detail lg:justify-between mb-10">
             <p className="font-500">Rạp</p>
             <p>{chairList?.thongTinPhim.tenRap}</p>
           </div>
           {select?.map((ghe) => (
-            <div key={ghe.maGhe} className="flex justify-between mb-3">
+            <div key={ghe.maGhe} className="lg:flex booked-detail lg:justify-between mb-3">
               <p>
                 <span className="font-500">Ghế chọn:&nbsp;</span> {ghe.maGhe}
               </p>
@@ -187,7 +187,7 @@ export const BookingMovieTemplate = () => {
               </p>
             </div>
           ))}
-          <div className="flex justify-between mt-10 text-red-500 font-500 ">
+          <div className="lg:flex booked-detail lg:justify-between mt-10 text-red-500 font-500 ">
             <p>Tổng tiền</p>
             <p>
               {select?.reduce((prev, curr) => {

@@ -582,4 +582,17 @@
   color: white;
   border: none !important;
 }
+/* max-width: 640px ---------------------------------------------------------------------------------------- */
+
+@media (max-width: 639px) {
+  .booking-movie .bill{
+    margin-top: 10px;
+  }
+  .booking-movie .bill .booked-detail{
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+
 /*# sourceMappingURL=style.css.map */
